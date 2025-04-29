@@ -1,16 +1,16 @@
-# el entorno virtual
+# Entorno virtual
 venv/
 
-# estos directorios son auto generados por la ejecucion de este proyecto
+# Caché de Python
 **/__pycache__/
 *.pyc
 
-# archivo el cual contiene informacion sensible
+# Archivo con información sensible
 config/.env
 
-# el directorio de airflow, esta auto generado y por esto se niega
-airflow/
+# Ignorar el contenido de airflow por defecto
+airflow/*
 
-# se evita la exclucion ya que los dags son una parte importante para el airflow
+# Mantener el directorio dags y su contenido
 !airflow/dags/
 !airflow/dags/**
