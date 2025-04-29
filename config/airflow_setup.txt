@@ -1,0 +1,83 @@
+# Guía de Instalación de Apache Airflow en un Entorno Virtual (venv) - Versión Script
+
+# Esta guía detalla los pasos para instalar Apache Airflow en un sistema Debian/Ubuntu,
+# utilizando un entorno virtual de Python. Incluye pasos de preparación del sistema, instalación
+# de dependencias, configuración de Airflow y una sección de troubleshooting para un error común de compilación.
+
+# **Directorio de Trabajo:** Todos los comandos deben ejecutarse desde el directorio
+# `escritorio/proyecto` (o el directorio elegido para tu proyecto).
+
+# --- Comandos a ejecutar en el bash ---
+
+cd ~/escritorio/proyecto
+
+# Actualizar la lista de paquetes
+sudo apt update
+
+# (Opcional) Comandos de reparación del sistema - Ejecutar si tienes problemas con dpkg o DNS
+# sudo apt-get install --reinstall dns-root-data cryptsetup-initramfs
+# sudo dpkg --configure -a
+# sudo apt update # Ya se hizo arriba, se puede comentar o quitar si no se ejecutan los opcionales.
+
+# Instalar Python 3 y pip (si no están ya instalados)
+sudo apt install -y python3 python3-pip python3-venv
+
+# Crear un entorno virtual llamado 'venv'
+python3 -m venv venv
+
+# Activar el entorno virtual
+# (Notarás que el prompt de tu terminal cambia para indicar que estás dentro de 'venv')
+source venv/bin/activate
+
+# Instalar Pandas, Numpy, python-dotenv y PyArrow (ajusta versiones según necesidad)
+pip install pandas==2.1.4 numpy==1.26.4 python-dotenv pyarrow
+
+# Instalar el proveedor de Airflow para PostgreSQL
+pip install apache-airflow-providers-postgres
+
+# Establecer el directorio HOME para Airflow (donde guardará dags, logs, etc.)
+export AIRFLOW_HOME="$(pwd)/airflow"
+
+# Definir la versión de Airflow y Python para obtener el archivo de restricciones correcto
+# (Asegúrate de que AIRFLOW_VERSION sea la que deseas instalar)
+export AIRFLOW_VERSION=2.10.0
+export PYTHON_VERSION="$(python -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')"
+# Corregido: Eliminada sintaxis de enlace Markdown inválida
+export CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+
+# Instalar Airflow usando el archivo de restricciones
+# (Esto puede tardar un poco)
+pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+
+# --- Iniciar airflow (si la instalación fue exitosa) ---
+airflow standalone
+
+# --- En caso de error (Troubleshooting para google-re2) ---
+
+# Actualizar pip, setuptools y wheel, e instalar pybind11
+pip install --upgrade pip setuptools wheel pybind11
+
+# Verificar la instalación de pybind11 (opcional)
+pip show pybind11
+
+# Intentar instalar google-re2 sin aislamiento de build (puede funcionar en algunos casos)
+pip install --no-build-isolation google-re2
+
+# Obtener las rutas de inclusión de pybind11 (informativo)
+python -m pybind11 --includes
+
+# Exportar flags del compilador C++ para incluir pybind11 (asegúrate que C++17 es compatible)
+export CXXFLAGS="-std=c++17 $(python -m pybind11 --includes)"
+
+# Reintentar la instalación de google-re2 sin aislamiento de build usando los flags
+pip install --no-build-isolation google-re2
+
+# Una vez que google-re2 se instale correctamente, reintenta la instalación de Airflow
+# (Si ya intentaste antes y falló, pip podría usar la versión cacheada o solo instalar dependencias faltantes)
+pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+
+# --- Iniciar el airflow (después del troubleshooting) ---
+airflow standalone
+
+# --- Fin de Pasos de Troubleshooting ---
+

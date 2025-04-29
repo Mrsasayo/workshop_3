@@ -1,0 +1,49 @@
+.
+├── airflow
+│   └── dags
+├── config
+│   └── airflow_setup.txt
+├── data
+│   ├── processed
+│   └── raw
+│       ├── 2015.csv
+│       ├── 2016.csv
+│       ├── 2017.csv
+│       ├── 2018.csv
+│       └── 2019.csv
+├── estructura.txt
+├── models
+├── notebooks
+│   ├── 2015_eda.ipynb
+│   ├── 2016_eda.ipynb
+│   ├── 2017_eda.ipynb
+│   ├── 2018_eda.ipynb
+│   └── 2019_eda.ipynb
+├── README.md
+├── scripts
+│   └── delete_pycache.sh
+├── src
+│   ├── etl
+│   │   ├── extract
+│   │   │   └── extract.py
+│   │   ├── load
+│   │   │   ├── load_predictions.py
+│   │   │   ├── save_transformed_datasets.py
+│   │   │   └── save_unified_dataset.py
+│   │   ├── merge
+│   │   │   └── merge.py
+│   │   └── transform
+│   │       └── transform.py
+│   ├── main.py
+│   ├── ml
+│   │   ├── predict
+│   │   │   └── predict_consumer.py
+│   │   └── train
+│   │       └── train.py
+│   └── streaming
+│       └── producer
+│           └── producer.py
+├── tests
+└── venv
+
+22 directories, 24 files
