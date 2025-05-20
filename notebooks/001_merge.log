@@ -1,0 +1,28 @@
+2025-05-18 23:12:35,398 - INFO - Inicio del notebook de unificación de datasets (001_merge.ipynb).
+2025-05-18 23:12:35,406 - INFO - Rutas a los archivos limpios definidas: {2015: '/home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2015_cleaned.csv', 2016: '/home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2016_cleaned.csv', 2017: '/home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2017_cleaned.csv', 2018: '/home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2018_cleaned.csv', 2019: '/home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2019_cleaned.csv'}
+2025-05-18 23:12:35,407 - INFO - Intentando cargar el archivo limpio: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2015_cleaned.csv
+2025-05-18 23:12:35,411 - INFO - Archivo 2015_cleaned.csv (2015) cargado exitosamente. Filas: 158, Columnas: 11
+2025-05-18 23:12:35,414 - INFO - Intentando cargar el archivo limpio: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2016_cleaned.csv
+2025-05-18 23:12:35,416 - INFO - Archivo 2016_cleaned.csv (2016) cargado exitosamente. Filas: 157, Columnas: 11
+2025-05-18 23:12:35,417 - INFO - Intentando cargar el archivo limpio: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2017_cleaned.csv
+2025-05-18 23:12:35,419 - INFO - Archivo 2017_cleaned.csv (2017) cargado exitosamente. Filas: 155, Columnas: 11
+2025-05-18 23:12:35,420 - INFO - Intentando cargar el archivo limpio: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2018_cleaned.csv
+2025-05-18 23:12:35,422 - INFO - Archivo 2018_cleaned.csv (2018) cargado exitosamente. Filas: 156, Columnas: 11
+2025-05-18 23:12:35,423 - INFO - Intentando cargar el archivo limpio: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2019_cleaned.csv
+2025-05-18 23:12:35,425 - INFO - Archivo 2019_cleaned.csv (2019) cargado exitosamente. Filas: 156, Columnas: 11
+2025-05-18 23:12:35,426 - INFO - Todos los DataFrames limpios fueron cargados exitosamente.
+2025-05-18 23:12:35,438 - INFO - Analizando la presencia de países a través de los años.
+2025-05-18 23:12:35,439 - INFO - Año 2015: 158 países únicos.
+2025-05-18 23:12:35,440 - INFO - Año 2016: 157 países únicos.
+2025-05-18 23:12:35,440 - INFO - Año 2017: 155 países únicos.
+2025-05-18 23:12:35,441 - INFO - Año 2018: 156 países únicos.
+2025-05-18 23:12:35,442 - INFO - Año 2019: 156 países únicos.
+2025-05-18 23:12:35,443 - INFO - Número de países presentes en TODOS los años: 141
+2025-05-18 23:12:35,443 - INFO - Número de países que NO están presentes en todos los años: 29
+2025-05-18 23:12:35,467 - INFO - Verificando consistencia de columnas entre los DataFrames cargados.
+2025-05-18 23:12:35,474 - INFO - Todas las columnas coinciden en los DataFrames limpios.
+2025-05-18 23:12:35,490 - INFO - Iniciando concatenación de los DataFrames limpios.
+2025-05-18 23:12:35,493 - INFO - DataFrames concatenados exitosamente en df_unified.
+2025-05-18 23:12:35,495 - INFO - El DataFrame unificado tiene 782 filas y 11 columnas.
+2025-05-18 23:12:35,520 - INFO - Realizando verificación final del DataFrame unificado.
+2025-05-18 23:12:35,561 - INFO - DataFrame unificado guardado exitosamente en: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/happiness_unified_dataset.csv

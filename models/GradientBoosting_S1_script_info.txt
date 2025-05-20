@@ -1,0 +1,6 @@
+Model: GradientBoosting_S1_Final_Optimized
+MSE_Test: 0.19450685302481727
+RMSE_Test: 0.4410293108454553
+MAE_Test: 0.3404786917252924
+R2_Test: 0.84009344288419
+Best_Params: {'learning_rate': 0.05, 'max_depth': 5, 'n_estimators': 200, 'subsample': 0.7, 'random_state': 42}
