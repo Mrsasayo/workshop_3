@@ -58,3 +58,63 @@
 2025-05-18 21:34:02,749 - INFO - Generando matriz de histogramas/KDE para variables seleccionadas.
 2025-05-18 21:34:03,807 - INFO - Matriz de histogramas/KDE mostrada.
 2025-05-18 21:34:03,816 - INFO - Generando boxplots horizontales para identificar outliers en variables numéricas principales de df_2015.
+2025-05-20 16:57:59,624 - INFO - Inicio del notebook de EDA (001_2015_eda.ipynb).
+2025-05-20 16:57:59,647 - INFO - Ruta del archivo a cargar: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/2015.csv
+2025-05-20 16:57:59,649 - INFO - Intentando cargar el archivo CSV: 2015.csv
+2025-05-20 16:57:59,658 - INFO - Archivo 2015.csv cargado exitosamente.
+2025-05-20 16:57:59,662 - INFO - El DataFrame tiene 158 filas y 12 columnas.
+2025-05-20 16:57:59,710 - INFO - Mostrando las primeras 5 filas del DataFrame en formato Markdown.
+2025-05-20 16:57:59,730 - INFO - Obteniendo la lista de todas las columnas del DataFrame.
+2025-05-20 16:57:59,733 - INFO - El DataFrame tiene 12 columnas.
+2025-05-20 16:57:59,749 - INFO - Verificando la existencia de filas duplicadas.
+2025-05-20 16:57:59,753 - INFO - No se encontraron filas duplicadas en el DataFrame.
+2025-05-20 16:57:59,761 - INFO - Mostrando información del DataFrame (sin conteo de no nulos).
+2025-05-20 16:57:59,773 - INFO - Calculando estadísticas descriptivas para las columnas numéricas.
+2025-05-20 16:57:59,788 - INFO - Estadísticas descriptivas numéricas calculadas y mostradas.
+2025-05-20 16:57:59,795 - INFO - Calculando estadísticas descriptivas para las columnas de tipo 'object'.
+2025-05-20 16:57:59,800 - INFO - Estadísticas descriptivas para columnas 'object' calculadas y mostradas.
+2025-05-20 16:57:59,811 - INFO - Iniciando el cálculo de la correlación gráfica para df_2015.
+2025-05-20 16:57:59,812 - INFO - Columnas numéricas identificadas en df_2015: ['Happiness Rank', 'Happiness Score', 'Standard Error', 'Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity', 'Dystopia Residual']
+2025-05-20 16:57:59,813 - INFO - Columnas a excluir del heatmap de correlación de features: ['Happiness Rank', 'Standard Error', 'Dystopia Residual']
+2025-05-20 16:57:59,813 - INFO - Columnas seleccionadas para el heatmap de correlación de features (df_2015): ['Happiness Score', 'Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity']
+2025-05-20 16:57:59,815 - INFO - Matriz de correlación de features calculada para df_2015.
+2025-05-20 16:58:00,054 - INFO - Mapa de calor de correlación de features generado y mostrado para df_2015.
+2025-05-20 16:58:00,065 - INFO - Generando matriz 2x2 de gráficos de dispersión.
+2025-05-20 16:58:00,579 - INFO - Matriz 2x2 de gráficos de dispersión mostrada.
+2025-05-20 16:58:00,586 - INFO - Generando gráfico de dispersión Generosity vs Economy.
+2025-05-20 16:58:00,742 - INFO - Gráfico de dispersión Generosidad vs. Economía mostrado.
+2025-05-20 16:58:00,752 - INFO - Generando gráfico de dispersión Standard Error vs Health.
+2025-05-20 16:58:00,849 - INFO - Gráfico de dispersión Error Estándar vs. Esperanza de Vida mostrado.
+2025-05-20 16:58:00,856 - INFO - Generando matriz de histogramas/KDE para variables seleccionadas.
+2025-05-20 16:58:01,965 - INFO - Matriz de histogramas/KDE mostrada.
+2025-05-20 16:58:01,974 - INFO - Generando boxplots horizontales para identificar outliers en variables numéricas principales de df_2015.
+2025-05-20 17:44:35,472 - INFO - Inicio del notebook de EDA (001_2015_eda.ipynb).
+2025-05-20 17:44:35,480 - INFO - Ruta del archivo a cargar: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/2015.csv
+2025-05-20 17:44:35,482 - INFO - Intentando cargar el archivo CSV: 2015.csv
+2025-05-20 17:44:35,484 - INFO - Archivo 2015.csv cargado exitosamente.
+2025-05-20 17:44:35,485 - INFO - El DataFrame tiene 158 filas y 12 columnas.
+2025-05-20 17:44:35,491 - INFO - Mostrando las primeras 5 filas del DataFrame en formato Markdown.
+2025-05-20 17:44:35,502 - INFO - Obteniendo la lista de todas las columnas del DataFrame.
+2025-05-20 17:44:35,503 - INFO - El DataFrame tiene 12 columnas.
+2025-05-20 17:44:35,519 - INFO - Verificando la existencia de filas duplicadas.
+2025-05-20 17:44:35,521 - INFO - No se encontraron filas duplicadas en el DataFrame.
+2025-05-20 17:44:35,529 - INFO - Mostrando información del DataFrame (sin conteo de no nulos).
+2025-05-20 17:44:35,541 - INFO - Calculando estadísticas descriptivas para las columnas numéricas.
+2025-05-20 17:44:35,554 - INFO - Estadísticas descriptivas numéricas calculadas y mostradas.
+2025-05-20 17:44:35,562 - INFO - Calculando estadísticas descriptivas para las columnas de tipo 'object'.
+2025-05-20 17:44:35,566 - INFO - Estadísticas descriptivas para columnas 'object' calculadas y mostradas.
+2025-05-20 17:44:35,575 - INFO - Iniciando el cálculo de la correlación gráfica para df_2015.
+2025-05-20 17:44:35,577 - INFO - Columnas numéricas identificadas en df_2015: ['Happiness Rank', 'Happiness Score', 'Standard Error', 'Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity', 'Dystopia Residual']
+2025-05-20 17:44:35,577 - INFO - Columnas a excluir del heatmap de correlación de features: ['Happiness Rank', 'Standard Error', 'Dystopia Residual']
+2025-05-20 17:44:35,577 - INFO - Columnas seleccionadas para el heatmap de correlación de features (df_2015): ['Happiness Score', 'Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity']
+2025-05-20 17:44:35,578 - INFO - Matriz de correlación de features calculada para df_2015.
+2025-05-20 17:44:35,849 - INFO - Mapa de calor de correlación de features generado y mostrado para df_2015.
+2025-05-20 17:44:35,859 - INFO - Generando matriz 2x2 de gráficos de dispersión.
+2025-05-20 17:44:36,378 - INFO - Matriz 2x2 de gráficos de dispersión mostrada.
+2025-05-20 17:44:36,384 - INFO - Generando gráfico de dispersión Generosity vs Economy.
+2025-05-20 17:44:36,503 - INFO - Gráfico de dispersión Generosidad vs. Economía mostrado.
+2025-05-20 17:44:36,511 - INFO - Generando gráfico de dispersión Standard Error vs Health.
+2025-05-20 17:44:36,611 - INFO - Gráfico de dispersión Error Estándar vs. Esperanza de Vida mostrado.
+2025-05-20 17:44:36,619 - INFO - Generando matriz de histogramas/KDE para variables seleccionadas.
+2025-05-20 17:44:37,803 - INFO - Matriz de histogramas/KDE mostrada.
+2025-05-20 17:44:37,814 - INFO - Generando boxplots horizontales para identificar outliers en variables numéricas principales de df_2015.

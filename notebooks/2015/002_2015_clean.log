@@ -162,3 +162,20 @@
 2025-05-18 21:44:09,403 - INFO - Columnas reordenadas exitosamente. Nuevo orden: ['year', 'region', 'country', 'happiness_rank', 'happiness_score', 'social_support', 'health_life_expectancy', 'generosity', 'freedom_to_make_life_choices', 'economy_gdp_per_capita', 'perceptions_of_corruption']
 2025-05-18 21:44:09,411 - INFO - Mostrando información final de df_2015_clean (tipos de datos).
 2025-05-18 21:44:09,437 - INFO - DataFrame limpio df_2015_clean guardado en: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2015_cleaned.csv
+2025-05-20 17:44:44,319 - INFO - Inicio del notebook de limpieza y transformación para 2015.csv (002_2015_clean.ipynb).
+2025-05-20 17:44:44,327 - INFO - Ruta del archivo raw a cargar: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/2015.csv
+2025-05-20 17:44:44,329 - INFO - Intentando cargar el archivo CSV: 2015.csv
+2025-05-20 17:44:44,331 - INFO - Archivo 2015.csv cargado exitosamente.
+2025-05-20 17:44:44,331 - INFO - El DataFrame df_2015_raw tiene 158 filas y 12 columnas.
+2025-05-20 17:44:44,332 - INFO - Copia del DataFrame creada como df_2015_clean para transformaciones.
+2025-05-20 17:44:44,350 - INFO - Iniciando estandarización de nombres de columnas para df_2015.
+2025-05-20 17:44:44,352 - INFO - Columnas después del renombrado: ['country', 'region', 'happiness_rank', 'happiness_score', 'Standard Error', 'economy_gdp_per_capita', 'social_support', 'health_life_expectancy', 'freedom_to_make_life_choices', 'perceptions_of_corruption', 'generosity', 'Dystopia Residual']
+2025-05-20 17:44:44,363 - INFO - Columnas eliminadas de df_2015_clean: ['Standard Error', 'Dystopia Residual']
+2025-05-20 17:44:44,364 - INFO - Columnas restantes: ['country', 'region', 'happiness_rank', 'happiness_score', 'economy_gdp_per_capita', 'social_support', 'health_life_expectancy', 'freedom_to_make_life_choices', 'perceptions_of_corruption', 'generosity']
+2025-05-20 17:44:44,383 - INFO - Columna 'year' con valor 2015 añadida a df_2015_clean.
+2025-05-20 17:44:44,419 - INFO - Espacios extra eliminados de la columna 'country'.
+2025-05-20 17:44:44,421 - INFO - Espacios extra eliminados de la columna 'region'.
+2025-05-20 17:44:44,443 - INFO - Iniciando reordenamiento de columnas para df_2015_clean.
+2025-05-20 17:44:44,445 - INFO - Columnas reordenadas exitosamente. Nuevo orden: ['year', 'region', 'country', 'happiness_rank', 'happiness_score', 'social_support', 'health_life_expectancy', 'generosity', 'freedom_to_make_life_choices', 'economy_gdp_per_capita', 'perceptions_of_corruption']
+2025-05-20 17:44:44,452 - INFO - Mostrando información final de df_2015_clean (tipos de datos).
+2025-05-20 17:44:44,467 - INFO - DataFrame limpio df_2015_clean guardado en: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2015_cleaned.csv

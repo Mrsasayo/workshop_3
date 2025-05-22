@@ -361,3 +361,26 @@
 2025-05-18 22:32:24,840 - INFO - Columnas reordenadas para df_2018_clean. Nuevo orden: ['year', 'region', 'country', 'happiness_rank', 'happiness_score', 'social_support', 'health_life_expectancy', 'generosity', 'freedom_to_make_life_choices', 'economy_gdp_per_capita', 'perceptions_of_corruption']
 2025-05-18 22:32:24,848 - INFO - Mostrando información final de df_2018_clean (tipos de datos).
 2025-05-18 22:32:24,869 - INFO - DataFrame limpio df_2018_clean guardado en: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2018_cleaned.csv
+2025-05-20 17:47:28,065 - INFO - Inicio del notebook de limpieza y transformación para 2018.csv (002_2018_clean.ipynb).
+2025-05-20 17:47:28,073 - INFO - Ruta del archivo raw a cargar: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/2018.csv
+2025-05-20 17:47:28,075 - INFO - Intentando cargar el archivo CSV: 2018.csv
+2025-05-20 17:47:28,078 - INFO - Archivo 2018.csv cargado exitosamente.
+2025-05-20 17:47:28,079 - INFO - El DataFrame df_2018_raw tiene 156 filas y 9 columnas.
+2025-05-20 17:47:28,079 - INFO - Copia del DataFrame creada como df_2018_clean para transformaciones.
+2025-05-20 17:47:28,102 - INFO - Iniciando estandarización de nombres de columnas para df_2018.
+2025-05-20 17:47:28,104 - INFO - Columnas después del renombrado (df_2018_clean): ['happiness_rank', 'country', 'happiness_score', 'economy_gdp_per_capita', 'social_support', 'health_life_expectancy', 'freedom_to_make_life_choices', 'generosity', 'perceptions_of_corruption']
+2025-05-20 17:47:28,123 - INFO - Iniciando creación de la columna 'region' para df_2018.
+2025-05-20 17:47:28,128 - INFO - Todos los países de df_2018 fueron mapeados a una región exitosamente.
+2025-05-20 17:47:28,129 - INFO - Columna 'region' creada y poblada en df_2018_clean.
+2025-05-20 17:47:28,150 - INFO - Verificando la columna 'region' creada en df_2018_clean.
+2025-05-20 17:47:28,152 - INFO - Valores únicos en 'region' (df_2018): ['Australia and New Zealand', 'Central and Eastern Europe', 'Eastern Asia', 'Latin America and Caribbean', 'Middle East and Northern Africa', 'North America', 'Southeastern Asia', 'Southern Asia', 'Sub-Saharan Africa', 'Western Europe']
+2025-05-20 17:47:28,154 - INFO - Conteo de valores por región (df_2018): {'Sub-Saharan Africa': 39, 'Latin America and Caribbean': 22, 'Middle East and Northern Africa': 22, 'Western Europe': 21, 'Central and Eastern Europe': 21, 'Southern Asia': 12, 'Southeastern Asia': 9, 'Eastern Asia': 6, 'North America': 2, 'Australia and New Zealand': 2}
+2025-05-20 17:47:28,162 - INFO - No se eliminan columnas del DataFrame df_2018_clean según el plan.
+2025-05-20 17:47:28,174 - INFO - Valores nulos en 'perceptions_of_corruption' antes de la imputación: 1
+2025-05-20 17:47:28,177 - INFO - Imputando NaNs en 'perceptions_of_corruption' con la mediana de su respectiva región. Mediana de la región 'Middle East and Northern Africa' (para el primer NaN encontrado) es: 0.1270
+2025-05-20 17:47:28,207 - INFO - Columna 'year' con valor 2018 añadida a df_2018_clean.
+2025-05-20 17:47:28,217 - INFO - Espacios extra eliminados de la columna 'country' en df_2018_clean.
+2025-05-20 17:47:28,230 - INFO - Iniciando reordenamiento de columnas para df_2018_clean.
+2025-05-20 17:47:28,232 - INFO - Columnas reordenadas para df_2018_clean. Nuevo orden: ['year', 'region', 'country', 'happiness_rank', 'happiness_score', 'social_support', 'health_life_expectancy', 'generosity', 'freedom_to_make_life_choices', 'economy_gdp_per_capita', 'perceptions_of_corruption']
+2025-05-20 17:47:28,242 - INFO - Mostrando información final de df_2018_clean (tipos de datos).
+2025-05-20 17:47:28,282 - INFO - DataFrame limpio df_2018_clean guardado en: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2018_cleaned.csv

@@ -640,3 +640,37 @@
 2025-05-18 21:09:13,096 - INFO - Boxplots horizontales generales generados y mostrados para df_2016.
 2025-05-18 21:09:13,106 - INFO - Generando matriz de boxplots horizontales por región para métricas de felicidad de df_2016.
 2025-05-18 21:09:14,264 - INFO - Matriz de boxplots horizontales por región mostrada para df_2016.
+2025-05-20 17:45:09,221 - INFO - Inicio del notebook de EDA (001_2016_eda.ipynb).
+2025-05-20 17:45:09,228 - INFO - Ruta del archivo a cargar: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/2016.csv
+2025-05-20 17:45:09,230 - INFO - Intentando cargar el archivo CSV: 2016.csv
+2025-05-20 17:45:09,239 - INFO - Archivo 2016.csv cargado exitosamente.
+2025-05-20 17:45:09,240 - INFO - El DataFrame tiene 157 filas y 13 columnas.
+2025-05-20 17:45:09,246 - INFO - Mostrando las primeras 5 filas del DataFrame en formato Markdown.
+2025-05-20 17:45:09,260 - INFO - Obteniendo la lista de todas las columnas del DataFrame.
+2025-05-20 17:45:09,262 - INFO - El DataFrame tiene 13 columnas.
+2025-05-20 17:45:09,262 - INFO - Nombres de las columnas: ['Country', 'Region', 'Happiness Rank', 'Happiness Score', 'Lower Confidence Interval', 'Upper Confidence Interval', 'Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity', 'Dystopia Residual']
+2025-05-20 17:45:09,276 - INFO - Verificando la existencia de filas duplicadas.
+2025-05-20 17:45:09,279 - INFO - No se encontraron filas duplicadas en el DataFrame.
+2025-05-20 17:45:09,284 - INFO - Mostrando información del DataFrame (conteo de no nulos y tipos de datos).
+2025-05-20 17:45:09,296 - INFO - Calculando estadísticas descriptivas para las columnas numéricas.
+2025-05-20 17:45:09,311 - INFO - Estadísticas descriptivas numéricas calculadas y mostradas.
+2025-05-20 17:45:09,317 - INFO - Calculando estadísticas descriptivas para las columnas de tipo 'object'.
+2025-05-20 17:45:09,322 - INFO - Estadísticas descriptivas para columnas 'object' calculadas y mostradas.
+2025-05-20 17:45:09,330 - INFO - Iniciando el cálculo de la correlación gráfica para df_2016.
+2025-05-20 17:45:09,331 - INFO - Columnas numéricas identificadas en df_2016: ['Happiness Rank', 'Happiness Score', 'Lower Confidence Interval', 'Upper Confidence Interval', 'Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity', 'Dystopia Residual']
+2025-05-20 17:45:09,331 - INFO - Columnas a excluir del análisis de correlación de features: ['Happiness Rank', 'Lower Confidence Interval', 'Upper Confidence Interval', 'Dystopia Residual']
+2025-05-20 17:45:09,332 - INFO - Columnas seleccionadas para el heatmap de correlación de features: ['Happiness Score', 'Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity']
+2025-05-20 17:45:09,333 - INFO - Matriz de correlación de features calculada.
+2025-05-20 17:45:09,551 - INFO - Mapa de calor de correlación de features generado y mostrado.
+2025-05-20 17:45:09,560 - INFO - Calculando y visualizando la frecuencia de países por región para df_2016.
+2025-05-20 17:45:09,742 - INFO - Gráfico de barras de frecuencia de países por región generado y mostrado.
+2025-05-20 17:45:09,743 - INFO - Tabla de frecuencia de países por región mostrada en formato Markdown.
+2025-05-20 17:45:09,753 - INFO - Iniciando análisis de 'Happiness Score' por región con boxplot horizontal para df_2016.
+2025-05-20 17:45:09,768 - INFO - Estadísticas descriptivas del 'Happiness Score' por región calculadas para df_2016.
+2025-05-20 17:45:09,968 - INFO - Boxplot horizontal del 'Happiness Score' por región mostrado para df_2016.
+2025-05-20 17:45:09,978 - INFO - Generando matriz de histogramas/KDE para variables numéricas clave de df_2016.
+2025-05-20 17:45:11,156 - INFO - Matriz de histogramas/KDE generada y mostrada para df_2016.
+2025-05-20 17:45:11,165 - INFO - Generando boxplots horizontales para identificar outliers generales en variables numéricas principales de df_2016.
+2025-05-20 17:45:11,705 - INFO - Boxplots horizontales generales generados y mostrados para df_2016.
+2025-05-20 17:45:11,716 - INFO - Generando matriz de boxplots horizontales por región para métricas de felicidad de df_2016.
+2025-05-20 17:45:13,269 - INFO - Matriz de boxplots horizontales por región mostrada para df_2016.

@@ -20,3 +20,26 @@
 2025-05-20 15:13:46,765 - INFO - 2210002428.py:4 - Iniciando el guardado del pipeline GradientBoosting_S1 final.
 2025-05-20 15:13:46,773 - INFO - 2210002428.py:13 - Pipeline GradientBoosting_S1 final guardado en: /home/nicolas/Escritorio/workshops ETL/workshop_3/models/GradientBoosting_S1_script.joblib
 2025-05-20 15:13:46,774 - INFO - 2210002428.py:28 - Información y métricas del modelo final guardadas en: /home/nicolas/Escritorio/workshops ETL/workshop_3/models/GradientBoosting_S1_script_info.txt
+2025-05-20 17:53:30,340 - INFO - 187417492.py:27 - Inicio del notebook de entrenamiento del modelo final (002_train.ipynb) - GradientBoosting_S1.
+2025-05-20 17:53:32,090 - INFO - 187417492.py:27 - Inicio del notebook de entrenamiento del modelo final (002_train.ipynb) - GradientBoosting_S1.
+2025-05-20 17:53:32,098 - INFO - 135363600.py:7 - Ruta del dataset unificado a cargar: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/happiness_unified_dataset.csv
+2025-05-20 17:53:32,101 - INFO - 135363600.py:11 - Dataset unificado 'happiness_unified_dataset.csv' cargado exitosamente.
+2025-05-20 17:53:32,102 - INFO - 135363600.py:12 - Dimensiones del DataFrame unificado: (782, 11)
+2025-05-20 17:53:32,114 - INFO - 1448912140.py:4 - Definiendo features (X), target (y) y dividiendo en entrenamiento/prueba.
+2025-05-20 17:53:32,118 - INFO - 1448912140.py:13 - Features (X) y target (y) definidos. Datos divididos.
+2025-05-20 17:53:32,118 - INFO - 1448912140.py:14 - Columnas en X_train: ['year', 'region', 'social_support', 'health_life_expectancy', 'generosity', 'freedom_to_make_life_choices', 'economy_gdp_per_capita', 'perceptions_of_corruption']
+2025-05-20 17:53:32,119 - INFO - 1448912140.py:15 - Dimensiones: X_train=(625, 8), X_test=(157, 8), y_train=(625,), y_test=(157,)
+2025-05-20 17:53:32,127 - INFO - 152022814.py:4 - Definiendo el preprocesador para Escenario S1.
+2025-05-20 17:53:32,130 - INFO - 152022814.py:51 - Preprocesador para Escenario S1 definido.
+2025-05-20 17:53:32,140 - INFO - 3156743219.py:7 - Definiendo y entrenando el modelo GradientBoosting_S1 con hiperparámetros óptimos.
+2025-05-20 17:53:32,510 - INFO - 3156743219.py:31 - Modelo GradientBoosting_S1 (pipeline final) entrenado exitosamente.
+2025-05-20 17:53:32,518 - INFO - 4286759554.py:7 - Evaluando el modelo GradientBoosting_S1 final en el conjunto de prueba.
+2025-05-20 17:53:32,524 - INFO - 4286759554.py:21 - Métricas en Test para GradientBoosting_S1_Final: MSE=0.1945, RMSE=0.4410, MAE=0.3405, R2=0.8401
+2025-05-20 17:53:32,525 - WARNING - 4286759554.py:28 - Advertencia: RMSE en test (0.4410) NO coincide exactamente con el RMSE de optimización (esperado ~0.4377).
+2025-05-20 17:53:32,544 - INFO - 2537394777.py:7 - Realizando análisis profundo del modelo GradientBoosting_S1 final.
+2025-05-20 17:53:32,790 - INFO - 2537394777.py:33 - Gráfico de importancia de features generado para el modelo final.
+2025-05-20 17:53:33,078 - INFO - 2537394777.py:56 - Análisis de residuos para el modelo final completado.
+2025-05-20 17:53:33,241 - INFO - 2537394777.py:67 - Gráfico de valores predichos vs. reales para el modelo final generado.
+2025-05-20 17:53:33,248 - INFO - 2210002428.py:4 - Iniciando el guardado del pipeline GradientBoosting_S1 final.
+2025-05-20 17:53:33,256 - INFO - 2210002428.py:13 - Pipeline GradientBoosting_S1 final guardado en: /home/nicolas/Escritorio/workshops ETL/workshop_3/models/GradientBoosting_S1_script.joblib
+2025-05-20 17:53:33,257 - INFO - 2210002428.py:28 - Información y métricas del modelo final guardadas en: /home/nicolas/Escritorio/workshops ETL/workshop_3/models/GradientBoosting_S1_script_info.txt

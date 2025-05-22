@@ -436,3 +436,31 @@
 2025-05-18 21:08:45,085 - INFO - Generando boxplots horizontales para identificar outliers generales en variables numéricas de df_2017.
 2025-05-18 21:08:45,616 - INFO - Boxplots horizontales generales generados y mostrados para df_2017.
 2025-05-18 21:57:31,450 - INFO - Inicio del notebook de EDA (001_2017_eda.ipynb).
+2025-05-20 17:45:45,123 - INFO - Inicio del notebook de EDA (001_2017_eda.ipynb).
+2025-05-20 17:45:45,150 - INFO - Ruta del archivo a cargar: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/2017.csv
+2025-05-20 17:45:45,151 - INFO - Intentando cargar el archivo CSV: 2017.csv
+2025-05-20 17:45:45,163 - INFO - Archivo 2017.csv cargado exitosamente.
+2025-05-20 17:45:45,164 - INFO - El DataFrame tiene 155 filas y 12 columnas.
+2025-05-20 17:45:45,199 - INFO - Mostrando las primeras 5 filas del DataFrame en formato Markdown.
+2025-05-20 17:45:45,217 - INFO - Obteniendo la lista de todas las columnas del DataFrame df_2017.
+2025-05-20 17:45:45,219 - INFO - El DataFrame df_2017 tiene 12 columnas.
+2025-05-20 17:45:45,220 - INFO - Nombres de las columnas (df_2017): ['Country', 'Happiness.Rank', 'Happiness.Score', 'Whisker.high', 'Whisker.low', 'Economy..GDP.per.Capita.', 'Family', 'Health..Life.Expectancy.', 'Freedom', 'Generosity', 'Trust..Government.Corruption.', 'Dystopia.Residual']
+2025-05-20 17:45:45,230 - INFO - Obteniendo la lista de todos los países en df_2017.
+2025-05-20 17:45:45,239 - INFO - Verificando la existencia de filas duplicadas en df_2017.
+2025-05-20 17:45:45,243 - INFO - No se encontraron filas duplicadas en el DataFrame df_2017.
+2025-05-20 17:45:45,253 - INFO - Mostrando información del DataFrame df_2017 (conteo de no nulos y tipos de datos).
+2025-05-20 17:45:45,261 - INFO - No se encontraron valores nulos explícitos (NaN) en el DataFrame df_2017.
+2025-05-20 17:45:45,270 - INFO - Calculando estadísticas descriptivas para las columnas numéricas de df_2017.
+2025-05-20 17:45:45,293 - INFO - Estadísticas descriptivas numéricas de df_2017 calculadas y mostradas.
+2025-05-20 17:45:45,305 - INFO - Calculando estadísticas descriptivas para las columnas de tipo 'object' de df_2017.
+2025-05-20 17:45:45,310 - INFO - Estadísticas descriptivas para columnas 'object' de df_2017 calculadas y mostradas.
+2025-05-20 17:45:45,322 - INFO - Iniciando el cálculo de la correlación gráfica para df_2017.
+2025-05-20 17:45:45,324 - INFO - Columnas numéricas identificadas en df_2017: ['Happiness.Rank', 'Happiness.Score', 'Whisker.high', 'Whisker.low', 'Economy..GDP.per.Capita.', 'Family', 'Health..Life.Expectancy.', 'Freedom', 'Generosity', 'Trust..Government.Corruption.', 'Dystopia.Residual']
+2025-05-20 17:45:45,324 - INFO - Columnas a excluir del heatmap de correlación de features: ['Happiness.Rank', 'Whisker.high', 'Whisker.low', 'Dystopia.Residual']
+2025-05-20 17:45:45,325 - INFO - Columnas seleccionadas para el heatmap de correlación de features (df_2017): ['Happiness.Score', 'Economy..GDP.per.Capita.', 'Family', 'Health..Life.Expectancy.', 'Freedom', 'Generosity', 'Trust..Government.Corruption.']
+2025-05-20 17:45:45,327 - INFO - Matriz de correlación de features calculada para df_2017.
+2025-05-20 17:45:45,695 - INFO - Mapa de calor de correlación de features generado y mostrado para df_2017.
+2025-05-20 17:45:45,710 - INFO - Generando matriz de histogramas/KDE para variables numéricas clave de df_2017.
+2025-05-20 17:45:47,146 - INFO - Matriz de histogramas/KDE generada y mostrada para df_2017 con paleta viridis.
+2025-05-20 17:45:47,158 - INFO - Generando boxplots horizontales para identificar outliers generales en variables numéricas de df_2017.
+2025-05-20 17:45:47,979 - INFO - Boxplots horizontales generales generados y mostrados para df_2017.

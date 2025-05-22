@@ -162,3 +162,25 @@
 2025-05-18 22:12:32,530 - INFO - Columnas reordenadas exitosamente para df_2017_clean. Nuevo orden: ['year', 'region', 'country', 'happiness_rank', 'happiness_score', 'social_support', 'health_life_expectancy', 'generosity', 'freedom_to_make_life_choices', 'economy_gdp_per_capita', 'perceptions_of_corruption']
 2025-05-18 22:12:32,544 - INFO - Mostrando información final de df_2017_clean (tipos de datos).
 2025-05-18 22:12:32,561 - INFO - DataFrame limpio df_2017_clean guardado en: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2017_cleaned.csv
+2025-05-20 17:46:08,016 - INFO - Inicio del notebook de limpieza y transformación para 2017.csv (002_2017_clean.ipynb).
+2025-05-20 17:46:08,023 - INFO - Ruta del archivo raw a cargar: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/2017.csv
+2025-05-20 17:46:08,025 - INFO - Intentando cargar el archivo CSV: 2017.csv
+2025-05-20 17:46:08,028 - INFO - Archivo 2017.csv cargado exitosamente.
+2025-05-20 17:46:08,029 - INFO - El DataFrame df_2017_raw tiene 155 filas y 12 columnas.
+2025-05-20 17:46:08,029 - INFO - Copia del DataFrame creada como df_2017_clean para transformaciones.
+2025-05-20 17:46:08,049 - INFO - Iniciando estandarización de nombres de columnas para df_2017.
+2025-05-20 17:46:08,051 - INFO - Columnas después del renombrado (df_2017_clean): ['country', 'happiness_rank', 'happiness_score', 'Whisker.high', 'Whisker.low', 'economy_gdp_per_capita', 'social_support', 'health_life_expectancy', 'freedom_to_make_life_choices', 'generosity', 'perceptions_of_corruption', 'Dystopia.Residual']
+2025-05-20 17:46:08,066 - INFO - Iniciando creación de la columna 'region' para df_2017.
+2025-05-20 17:46:08,070 - INFO - Todos los países fueron mapeados a una región exitosamente.
+2025-05-20 17:46:08,072 - INFO - Columna 'region' creada y poblada en df_2017_clean.
+2025-05-20 17:46:08,124 - INFO - Verificando la columna 'region' creada en df_2017_clean.
+2025-05-20 17:46:08,126 - INFO - Valores únicos en 'region': ['Australia and New Zealand', 'Central and Eastern Europe', 'Eastern Asia', 'Latin America and Caribbean', 'Middle East and Northern Africa', 'North America', 'Southeastern Asia', 'Southern Asia', 'Sub-Saharan Africa', 'Western Europe']
+2025-05-20 17:46:08,130 - INFO - Conteo de valores por región: {'Sub-Saharan Africa': 38, 'Middle East and Northern Africa': 23, 'Latin America and Caribbean': 22, 'Western Europe': 21, 'Central and Eastern Europe': 21, 'Southern Asia': 12, 'Southeastern Asia': 8, 'Eastern Asia': 6, 'North America': 2, 'Australia and New Zealand': 2}
+2025-05-20 17:46:08,151 - INFO - Columnas eliminadas de df_2017_clean: ['Whisker.high', 'Whisker.low', 'Dystopia.Residual']
+2025-05-20 17:46:08,152 - INFO - Columnas restantes en df_2017_clean: ['country', 'happiness_rank', 'happiness_score', 'economy_gdp_per_capita', 'social_support', 'health_life_expectancy', 'freedom_to_make_life_choices', 'generosity', 'perceptions_of_corruption', 'region']
+2025-05-20 17:46:08,160 - INFO - Columna 'year' con valor 2017 añadida a df_2017_clean.
+2025-05-20 17:46:08,170 - INFO - Espacios extra eliminados de la columna 'country' en df_2017_clean.
+2025-05-20 17:46:08,181 - INFO - Iniciando reordenamiento de columnas para df_2017_clean.
+2025-05-20 17:46:08,186 - INFO - Columnas reordenadas exitosamente para df_2017_clean. Nuevo orden: ['year', 'region', 'country', 'happiness_rank', 'happiness_score', 'social_support', 'health_life_expectancy', 'generosity', 'freedom_to_make_life_choices', 'economy_gdp_per_capita', 'perceptions_of_corruption']
+2025-05-20 17:46:08,198 - INFO - Mostrando información final de df_2017_clean (tipos de datos).
+2025-05-20 17:46:08,215 - INFO - DataFrame limpio df_2017_clean guardado en: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/2017_cleaned.csv

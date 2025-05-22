@@ -150,3 +150,32 @@
 2025-05-18 20:08:58,947 - INFO - Matriz de histogramas/KDE generada y mostrada para df_2019 con paleta 'viridis'.
 2025-05-18 20:08:58,957 - INFO - Generando boxplots horizontales para identificar outliers generales en variables numéricas de df_2019.
 2025-05-18 20:08:59,320 - INFO - Boxplots horizontales generales generados y mostrados para df_2019.
+2025-05-20 17:47:52,061 - INFO - Inicio del notebook de EDA (001_2019_eda.ipynb).
+2025-05-20 17:47:52,070 - INFO - Ruta del archivo a cargar: /home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/2019.csv
+2025-05-20 17:47:52,071 - INFO - Intentando cargar el archivo CSV: 2019.csv
+2025-05-20 17:47:52,074 - INFO - Archivo 2019.csv cargado exitosamente.
+2025-05-20 17:47:52,075 - INFO - El DataFrame tiene 156 filas y 9 columnas.
+2025-05-20 17:47:52,082 - INFO - Mostrando las primeras 5 filas del DataFrame df_2019 en formato Markdown.
+2025-05-20 17:47:52,092 - INFO - Obteniendo la lista de todas las columnas del DataFrame df_2019.
+2025-05-20 17:47:52,093 - INFO - El DataFrame df_2019 tiene 9 columnas.
+2025-05-20 17:47:52,094 - INFO - Nombres de las columnas (df_2019): ['Overall rank', 'Country or region', 'Score', 'GDP per capita', 'Social support', 'Healthy life expectancy', 'Freedom to make life choices', 'Generosity', 'Perceptions of corruption']
+2025-05-20 17:47:52,101 - INFO - Obteniendo la lista de todos los países en df_2019.
+2025-05-20 17:47:52,109 - INFO - Verificando la existencia de filas duplicadas en df_2019.
+2025-05-20 17:47:52,112 - INFO - No se encontraron filas duplicadas en el DataFrame df_2019.
+2025-05-20 17:47:52,120 - INFO - Mostrando información del DataFrame df_2019 (conteo de no nulos y tipos de datos).
+2025-05-20 17:47:52,125 - INFO - No se encontraron valores nulos explícitos (NaN) en el DataFrame df_2019.
+2025-05-20 17:47:52,131 - INFO - Calculando estadísticas descriptivas para las columnas numéricas de df_2019.
+2025-05-20 17:47:52,143 - INFO - Estadísticas descriptivas numéricas de df_2019 calculadas y mostradas.
+2025-05-20 17:47:52,150 - INFO - Calculando estadísticas descriptivas para las columnas de tipo 'object' de df_2019.
+2025-05-20 17:47:52,154 - INFO - Estadísticas descriptivas para columnas 'object' de df_2019 calculadas y mostradas.
+2025-05-20 17:47:52,163 - INFO - Iniciando el cálculo de la correlación gráfica para df_2019.
+2025-05-20 17:47:52,165 - INFO - Columnas numéricas identificadas en df_2019: ['Overall rank', 'Score', 'GDP per capita', 'Social support', 'Healthy life expectancy', 'Freedom to make life choices', 'Generosity', 'Perceptions of corruption']
+2025-05-20 17:47:52,165 - INFO - Columnas a excluir del heatmap de correlación de features (df_2019): ['Overall rank']
+2025-05-20 17:47:52,166 - INFO - Columnas seleccionadas para el heatmap de correlación de features (df_2019): ['Score', 'GDP per capita', 'Social support', 'Healthy life expectancy', 'Freedom to make life choices', 'Generosity', 'Perceptions of corruption']
+2025-05-20 17:47:52,167 - INFO - Matriz de correlación de features calculada para df_2019.
+2025-05-20 17:47:52,449 - INFO - Mapa de calor de correlación de features generado y mostrado para df_2019.
+2025-05-20 17:47:52,453 - INFO - Correlación de features con 'Score' (df_2019) calculada y mostrada.
+2025-05-20 17:47:52,461 - INFO - Generando matriz de histogramas/KDE para variables numéricas clave de df_2019 usando paleta 'viridis'.
+2025-05-20 17:47:53,310 - INFO - Matriz de histogramas/KDE generada y mostrada para df_2019 con paleta 'viridis'.
+2025-05-20 17:47:53,320 - INFO - Generando boxplots horizontales para identificar outliers generales en variables numéricas de df_2019.
+2025-05-20 17:47:53,751 - INFO - Boxplots horizontales generales generados y mostrados para df_2019.
