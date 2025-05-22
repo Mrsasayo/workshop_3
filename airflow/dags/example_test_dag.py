@@ -9,4 +9,4 @@ with DAG(
     catchup=False,
     tags=['example_test'],
 ) as dag:
-    dummy_task = EmptyOperator(task_id='dummy_start_task')  ps aux | grep gunicorn
+    dummy_task = EmptyOperator(task_id='dummy_start_task')
