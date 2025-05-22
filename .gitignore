@@ -27,6 +27,15 @@ logs/ # Si tienes una carpeta específica de logs no relacionada con Airflow que
 config/.env
 .env
 
+# Archivos creados por el codigo
+data/predictions_output.csv
+data/processed/happiness_unified_dataset.csv
+data/processed/2015_cleaned.csv
+data/processed/2016_cleaned.csv
+data/processed/2017_cleaned.csv
+data/processed/2018_cleaned.csv
+data/processed/2019_cleaned.csv
+
 # Archivos de modelos específicos (estos son candidatos para Git LFS si necesitas versionarlos)
 models/GradientBoosting_S1_script_info.txt
 models/GradientBoosting_S1_script.joblib
