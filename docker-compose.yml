@@ -39,7 +39,9 @@ services:
       KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1 # Requerido por imágenes de Confluent
       KAFKA_CONFLUENT_BALANCER_TOPIC_REPLICATION_FACTOR: 1 # Requerido por imágenes de Confluent
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1 # Para entornos de un solo broker
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1 # Para entornos de un solo broker
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_LOG_RETENTION_MS: 120000 # Retención por defecto para nuevos topics
+    # Para entornos de un solo broker
     # Podrías añadir un volumen para persistir datos de Kafka si quieres que los topics sobrevivan
     # a un docker-compose down, pero para desarrollo no siempre es necesario.
     # volumes:

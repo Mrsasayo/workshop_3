@@ -1,4 +1,4 @@
-# /home/nicolas/Escritorio/workshops ETL/workshop_3/etl/transform/transform.py
+# /home/nicolas/Escritorio/workshops_ETL/workshop_3/etl/transform/transform.py
 
 import pandas as pd
 import numpy as np # Para NaN y funciones numéricas si es necesario
@@ -354,7 +354,7 @@ if __name__ == '__main__':
     
     # Crear DataFrames dummy para probar la lógica de transformación
     # Deberías usar los CSVs reales para una prueba completa
-    test_data_path = "/home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/"
+    test_data_path = "/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/raw/"
     try:
         df_2015_r = pd.read_csv(os.path.join(test_data_path, "2015.csv"))
         df_2016_r = pd.read_csv(os.path.join(test_data_path, "2016.csv"))

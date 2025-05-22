@@ -1,4 +1,4 @@
-# /home/nicolas/Escritorio/workshops ETL/workshop_3/ml/train/train.py
+# /home/nicolas/Escritorio/workshops_ETL/workshop_3/ml/train/train.py
 
 import pandas as pd
 import numpy as np
@@ -139,7 +139,7 @@ if __name__ == '__main__':
     }
     df_train_for_test = pd.DataFrame(data_train_dummy)
     
-    test_models_output_dir = "/home/nicolas/Escritorio/workshops ETL/workshop_3/models_test/"
+    test_models_output_dir = "/home/nicolas/Escritorio/workshops_ETL/workshop_3/models_test/"
     
     try:
         saved_model_path = train_and_save_model(df_train_for_test, test_models_output_dir, "test_gbr_s1_pipeline.joblib")

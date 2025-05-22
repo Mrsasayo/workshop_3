@@ -35,6 +35,7 @@ data/processed/2016_cleaned.csv
 data/processed/2017_cleaned.csv
 data/processed/2018_cleaned.csv
 data/processed/2019_cleaned.csv
+data/predictions_output.csv
 
 # Archivos de modelos específicos (estos son candidatos para Git LFS si necesitas versionarlos)
 models/GradientBoosting_S1_script_info.txt

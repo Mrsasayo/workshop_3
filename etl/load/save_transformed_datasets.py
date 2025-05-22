@@ -1,4 +1,4 @@
-# /home/nicolas/Escritorio/workshops ETL/workshop_3/etl/load/save_transformed_datasets.py
+# /home/nicolas/Escritorio/workshops_ETL/workshop_3/etl/load/save_transformed_datasets.py
 
 import pandas as pd
 import os
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     
     dfs_tuple_test = (dummy_df_2015, dummy_df_2016, dummy_df_2017, dummy_df_2018, dummy_df_2019)
     
-    test_output_path = "/home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed_test/" # Usar un directorio de prueba
+    test_output_path = "/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/processed_test/" # Usar un directorio de prueba
     
     try:
         status_message = save_transformed_datasets(dfs_tuple_test, test_output_path)

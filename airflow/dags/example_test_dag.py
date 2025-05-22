@@ -1,3 +1,4 @@
+# /home/nicolas/Escritorio/workshops_ETL/workshop_3/airflow/dags/example_test_dag.py
 from airflow import DAG
 from airflow.operators.empty import EmptyOperator
 from datetime import datetime

@@ -192,7 +192,54 @@ def main():
 
                 messages_processed_total += 1
                 data_to_predict_dict = message.value 
-                logger.info(f"Mensaje {messages_processed_total} (offset={message.offset}): {data_to_predict_dict}")
+                logger.info(f"Mensaje {messages_processed_total} (offset={message.offset}) recibido: {data_to_predict_dict}")
+
+                # --- INICIO DE LA LÓGICA DE VERIFICACIÓN DE DUPLICADOS ---
+                # Columnas para identificar unívocamente un registro de entrada (excluyendo el target y la predicción)
+                # Asegúrate de que estas sean las features reales que usa tu modelo para predecir.
+                # 'happiness_rank' y 'happiness_score' original podrían o no ser parte de esto,
+                # dependiendo de si las usas como features o solo para contexto.
+                # Por tu ejemplo, parece que las incluyes.
+                excluded_columns = ['predicted_happiness_score','happiness_rank','happiness_score']
+                identifier_columns = [col for col in EXPECTED_DF_COLUMNS if col not in excluded_columns]
+                
+                # Construir las condiciones para la consulta SQL
+                conditions = []
+                values_for_conditions = []
+                valid_record_for_check = True
+                for col in identifier_columns:
+                    if col in data_to_predict_dict and data_to_predict_dict[col] is not None:
+                        conditions.append(f"{col} = %s")
+                        values_for_conditions.append(data_to_predict_dict[col])
+                    else:
+                        # Si alguna columna clave es None, podrías decidir no hacer el check o manejarlo diferente
+                        logger.warning(f"Columna identificadora '{col}' es None o no está en el mensaje. Saltando chequeo de duplicados para este mensaje.")
+                        valid_record_for_check = False
+                        break 
+                
+                if pg_conn and valid_record_for_check:
+                    try:
+                        with pg_conn.cursor() as cur:
+                            # Construir la consulta para verificar si ya existe una predicción para estas features
+                            # Aquí asumimos que si existe alguna fila con estas features, ya fue predicha.
+                            # Podrías también verificar si 'predicted_happiness_score' NO ES NULL.
+                            check_query = f"SELECT 1 FROM {PG_TABLE_NAME} WHERE {' AND '.join(conditions)} LIMIT 1;"
+                            cur.execute(check_query, tuple(values_for_conditions))
+                            exists = cur.fetchone()
+                            
+                            if exists:
+                                logger.info(f"Predicción para { {k: data_to_predict_dict.get(k) for k in ['year', 'country']} } ya existe en la base de datos. Saltando.")
+                                # Opcional: podrías querer confirmar el offset de Kafka aquí si no usas auto-commit
+                                # y si consideras este mensaje como "procesado".
+                                continue # Pasa al siguiente mensaje de Kafka
+                    except psycopg2.Error as e_check:
+                        logger.error(f"Error al verificar duplicados en PostgreSQL: {e_check}")
+                        # Decide cómo manejar esto: ¿continuar y predecir de todas formas, o saltar?
+                        # Por seguridad, podrías continuar y predecir si la verificación falla.
+                    except Exception as e_general_check:
+                        logger.error(f"Error general durante la verificación de duplicados: {e_general_check}")
+
+                # --- FIN DE LA LÓGICA DE VERIFICACIÓN DE DUPLICADOS ---
 
                 try:
                     df_to_predict = pd.DataFrame([data_to_predict_dict])
@@ -201,7 +248,7 @@ def main():
                     # Si faltan columnas, el preprocesador fallará.
                     
                     prediction = model.predict(df_to_predict)
-                    predicted_score = prediction[0] 
+                    predicted_score = float(prediction[0]) 
                     
                     prediction_record = data_to_predict_dict.copy()
                     prediction_record['predicted_happiness_score'] = predicted_score

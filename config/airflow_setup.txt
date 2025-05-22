@@ -1,6 +1,7 @@
+#/home/nicolas/Escritorio/workshops_ETL/workshop_3/config/airflow_setup.txt
 # Guía de Instalación de Apache Airflow 2.10.0 (venv)
 
-# Ejecutar desde el directorio base del proyecto (ej. ~/workshops ETL/workshop_3)
+# Ejecutar desde el directorio base del proyecto (ej. ~/workshops_ETL/workshop_3)
 
 # --- 0. Navegación al Directorio del Proyecto ---
 cd ~/Escritorio/workshops\ ETL/workshop_3

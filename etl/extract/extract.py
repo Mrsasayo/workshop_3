@@ -1,4 +1,4 @@
-# /home/nicolas/Escritorio/workshops ETL/workshop_3/etl/extract/extract.py
+# /home/nicolas/Escritorio/workshops_ETL/workshop_3/etl/extract/extract.py
 
 import pandas as pd
 import os
@@ -42,7 +42,7 @@ def load_single_raw_csv(file_path, year_for_log):
         logger.error(f"Error Crítico: Ocurrió un error inesperado al cargar {file_path} (año {year_for_log}): {e}")
         raise
 
-def extract_all_raw_data(raw_data_path_base="/home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/"):
+def extract_all_raw_data(raw_data_path_base="/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/raw/"):
     """
     Carga los 5 datasets de felicidad crudos (2015-2019).
     Retorna una tupla de 5 DataFrames (df_2015, df_2016, df_2017, df_2018, df_2019).
@@ -91,7 +91,7 @@ if __name__ == '__main__':
     logger.info("Ejecutando extract.py como script independiente para pruebas.")
     
     # Definir una ruta base para las pruebas (podría ser la misma)
-    test_raw_data_path = "/home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/"
+    test_raw_data_path = "/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/raw/"
     
     try:
         df_2015, df_2016, df_2017, df_2018, df_2019 = extract_all_raw_data(test_raw_data_path)

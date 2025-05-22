@@ -1,4 +1,4 @@
-# /home/nicolas/Escritorio/workshops ETL/workshop_3/airflow/dags/task.py
+# /home/nicolas/Escritorio/workshops_ETL/workshop_3/airflow/dags/task.py
 
 import pandas as pd
 import logging

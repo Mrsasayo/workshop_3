@@ -1,4 +1,4 @@
-# /home/nicolas/Escritorio/workshops ETL/workshop_3/streaming/producer/producer.py
+# /home/nicolas/Escritorio/workshops_ETL/workshop_3/streaming/producer/producer.py
 
 import pandas as pd
 import json # Para serializar los mensajes a JSON

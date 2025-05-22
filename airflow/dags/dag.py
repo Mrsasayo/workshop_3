@@ -1,4 +1,4 @@
-# /home/nicolas/Escritorio/workshops ETL/workshop_3/airflow/dags/dag.py
+# /home/nicolas/Escritorio/workshops_ETL/workshop_3/airflow/dags/dag.py
 
 from datetime import datetime, timedelta
 from airflow import DAG
@@ -41,7 +41,7 @@ with DAG(
     extract_task = PythonOperator(
         task_id='1_extraccion',
         python_callable=task_extract_data,
-        # op_kwargs={'raw_data_path': '/home/nicolas/Escritorio/workshops ETL/workshop_3/data/raw/'} # Ejemplo si la función lo necesita
+        # op_kwargs={'raw_data_path': '/home/nicolas/Escritorio/workshopsETL/workshop_3/data/raw/'} # Ejemplo si la función lo necesita
     )
 
     # --- Tarea 2: Transformación ---
@@ -64,7 +64,7 @@ with DAG(
         task_id='3_2_carga_individual_limpios',
         python_callable=task_load_individual_cleaned,
         # op_kwargs para pasar la ruta de salida, por ejemplo
-        op_kwargs={'processed_data_path': '/home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/'}
+        op_kwargs={'processed_data_path': '/home/nicolas/Escritorio/workshopsETL/workshop_3/data/processed/'}
     )
 
     # --- Tarea 4.1: Entrenamiento del Modelo ---
@@ -72,7 +72,7 @@ with DAG(
     train_model_task = PythonOperator(
         task_id='4_1_entrenamiento_modelo',
         python_callable=task_train_model,
-        op_kwargs={'models_output_path': '/home/nicolas/Escritorio/workshops ETL/workshop_3/models/'}
+        op_kwargs={'models_output_path': '/home/nicolas/Escritorio/workshopsETL/workshop_3/models/'}
     )
 
     # --- Tarea 4.2: Kafka Producer ---
@@ -92,7 +92,7 @@ with DAG(
     load_full_merged_task = PythonOperator(
         task_id='4_3_carga_merge_completo',
         python_callable=task_load_full_merged,
-        op_kwargs={'processed_data_path': '/home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/'}
+        op_kwargs={'processed_data_path': '/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/processed/'}
     )
 
     # --- Definición de Dependencias ---

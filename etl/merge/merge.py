@@ -1,4 +1,4 @@
-# /home/nicolas/Escritorio/workshops ETL/workshop_3/etl/merge/merge.py
+# /home/nicolas/Escritorio/workshops_ETL/workshop_3/etl/merge/merge.py
 
 import pandas as pd
 from sklearn.model_selection import train_test_split # Para el split
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     
     # Para probar, necesitaríamos cargar los DFs limpios (o crear dummies)
     # Asumimos que los archivos _cleaned.csv existen en data/processed/
-    base_path_processed_test = "/home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed/"
+    base_path_processed_test = "/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/processed/"
     
     dfs_test_cleaned = []
     loaded_ok = True

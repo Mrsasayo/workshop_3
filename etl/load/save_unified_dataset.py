@@ -1,4 +1,4 @@
-# /home/nicolas/Escritorio/workshops ETL/workshop_3/etl/load/save_unified_dataset.py
+# /home/nicolas/Escritorio/workshops_ETL/workshop_3/etl/load/save_unified_dataset.py
 
 import pandas as pd
 import os
@@ -68,7 +68,7 @@ if __name__ == '__main__':
     df_test_unified = df_test_unified[[col for col in DESIRED_FINAL_COLUMN_ORDER_TEST if col in df_test_unified.columns]]
 
 
-    test_output_dir = "/home/nicolas/Escritorio/workshops ETL/workshop_3/data/processed_test/" # Usar un directorio de prueba
+    test_output_dir = "/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/processed_test/" # Usar un directorio de prueba
     
     try:
         saved_path = save_unified_dataframe(df_test_unified, test_output_dir, "test_unified_dataset.csv")
