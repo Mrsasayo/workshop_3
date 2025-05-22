@@ -1,18 +1,63 @@
-# Entorno virtual
+# Entornos Virtuales
 venv/
+.venv/
+env/
+ENV/
+*/ENV/
+*/env/
 
-# Caché de Python
-**/__pycache__/
+# Archivos compilados de Python y caché
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
 
+# Archivos de Jupyter Notebook (si solo quieres el código fuente .py)
+# Si quieres versionar los .ipynb, comenta la siguiente línea
+# ambiente.ipynb # Ya lo pediste explícitamente
+
+# Archivos de log
+*.log
+logs/ # Si tienes una carpeta específica de logs no relacionada con Airflow que quieras ignorar globalmente
+
+# Archivos PDF generados
+*.pdf
+
+# Archivos de configuración sensibles y variables de entorno
+config/.env
+.env
+
+# Archivos de modelos específicos (estos son candidatos para Git LFS si necesitas versionarlos)
+models/GradientBoosting_S1_script_info.txt
+models/GradientBoosting_S1_script.joblib
+models/trained_happiness_model_pipeline.joblib
+
+# Archivos específicos del usuario
 ambiente.ipynb
 
-# Archivo con información sensible
-config/.env
-
-# Ignorar el contenido de airflow por defecto
-airflow/*
-
-# Mantener el directorio dags y su contenido
+# Ignorar toda la carpeta airflow
+airflow/
+# PERO, no ignorar (re-incluir) archivos específicos dentro de airflow/dags/
+# Para que esto funcione, también debemos no ignorar la carpeta dags misma.
 !airflow/dags/
-!airflow/dags/**
+!airflow/dags/dag.py
+!airflow/dags/task.py
+!airflow/dags/example_test_dag.py
+# Ignorar archivos de configuración de Airflow
+
+# Otros archivos generados o específicos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de bases de datos locales (si no están ya cubiertos por airflow/)
+*.db
+*.sqlite
+*.sqlite3
+
+# Archivos de dependencias de Docker si no los gestionas de otra forma
+# docker-compose.yml SÍ debería estar versionado normalmente
+
+# Archivos temporales de editores
+*.swp
+*~
