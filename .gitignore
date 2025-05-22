@@ -45,14 +45,13 @@ models/trained_happiness_model_pipeline.joblib
 ambiente.ipynb
 
 # Ignorar toda la carpeta airflow
-airflow/
-# PERO, no ignorar (re-incluir) archivos específicos dentro de airflow/dags/
-# Para que esto funcione, también debemos no ignorar la carpeta dags misma.
-!airflow/dags/
-!airflow/dags/dag.py
-!airflow/dags/task.py
-!airflow/dags/example_test_dag.py
-# Ignorar archivos de configuración de Airflow
+airflow/dags/__pycache__
+airflow/logs
+airflow/airflow-webserver.pid
+airflow/airflow.cfg
+airflow/airflow.db
+airflow/standalone_admin_password.txt
+airflow/webserver_config.py
 
 # Otros archivos generados o específicos del sistema operativo
 .DS_Store
