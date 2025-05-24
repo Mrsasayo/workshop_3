@@ -8,21 +8,25 @@ Este proyecto implementa un pipeline completo de ETL (Extracción, Transformaci�
 2.  [Objetivos]
 3.  [Tecnologías Utilizadas]
 4.  [Estructura del Proyecto]
-5.  [Flujo de Datos y Procesos](#flujo-de-datos-y-procesos)
-    *   [Pipeline de Airflow](#pipeline-de-airflow)
-    *   [Consumidor de Kafka y Almacenamiento de Predicciones](#consumidor-de-kafka-y-almacenamiento-de-predicciones)
-6.  [Configuración y Ejecución](#configuración-y-ejecución)
-    *   [Prerrequisitos](#prerrequisitos)
-    *   [Configuración del Entorno](#configuración-del-entorno)
-    *   [Iniciar Servicios (Kafka, Airflow)](#iniciar-servicios-kafka-airflow)
-    *   [Ejecutar el Pipeline](#ejecutar-el-pipeline)
-    *   [Ejecutar el Consumidor de Predicciones](#ejecutar-el-consumidor-de-predicciones)
-7.  [Análisis y Resultados](#análisis-y-resultados)
-8.  [Posibles Mejoras Futuras](#posibles-mejoras-futuras)
+5.  [Flujo de Datos y Procesos]
+    *   [Pipeline de Airflow]
+    *   [Consumidor de Kafka y Almacenamiento de Predicciones]
+6.  [Configuración y Ejecución]
+    *   [Prerrequisitos]
+    *   [Configuración del Entorno]
+    *   [Iniciar Servicios (Kafka, Airflow)]
+    *   [Ejecutar el Pipeline]
+    *   [Ejecutar el Consumidor de Predicciones]
+7.  [Análisis y Resultados]
+8.  [Posibles Mejoras Futuras]
 
 ## Visión General del Proyecto
 
-El proyecto toma datos crudos del score de felicidad mundial de los años 2015 a 2019. Estos datasets se limpian, transforman y unifican. Posteriormente, se entrena un modelo de Machine Learning (Gradient Boosting Regressor) para predecir el score de felicidad. Una porción de los datos se envía a través de un topic de Kafka para simular un flujo de datos para predicción en tiempo real. Un consumidor de Kafka lee estos datos, utiliza el modelo entrenado para hacer predicciones y almacena los resultados en una base de datos PostgreSQL.
+El proyecto toma datos crudos del score de felicidad mundial de los años 2015 a 2019. Estos datasets se limpian,
+transforman y unifican. Posteriormente, se entrena un modelo de Machine Learning (Gradient Boosting Regressor) 
+para predecir el score de felicidad. Una porción de los datos se envía a través de un topic de Kafka para simular 
+un flujo de datos para predicción en tiempo real. Un consumidor de Kafka lee estos datos, utiliza el modelo entrenado 
+para hacer predicciones y almacena los resultados en una base de datos PostgreSQL.
 
 ## Objetivos
 
