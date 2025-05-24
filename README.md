@@ -54,40 +54,52 @@ El proyecto toma datos crudos del score de felicidad mundial de los años 2015 a
 
 ```
 .
-├── airflow/                    # Configuración y DAGs de Airflow
-│   ├── dags/
-│   │   ├── dag.py              # Definición principal del DAG
-│   │   └── task.py             # Funciones de las tareas de Airflow
-│   └── ...                     # Otros archivos de configuración de Airflow
+├── airflow/
+│ ├── dags/
+│ │ ├── dag.py
+│ │ └── task.py
+│ ├── airflow.cfg
+│ ├── airflow.db
+│ └── logs/
 ├── config/
-│   ├── .env                    # Variables de entorno (ej. credenciales DB)
-│   └── airflow_setup.txt       # Guía de instalación de Airflow
+│ ├── .env
+│ └── airflow_setup.txt
 ├── data/
-│   ├── raw/                    # Datasets originales (2015.csv, ..., 2019.csv)
-│   ├── processed/              # Datasets limpios y unificados generados por el pipeline
-│   ├── predictions_output.csv  # CSV con las predicciones generadas por el consumidor
-│   └── 001_mini_eda_predicciones.ipynb # Notebook para analizar resultados
-├── docker-compose.yml          # Configuración de Docker para Kafka y Zookeeper
-├── etl/                        # Scripts para el proceso ETL
-│   ├── extract/
-│   ├── load/
-│   ├── merge/
-│   └── transform/
-├── ml/                         # Scripts para Machine Learning
-│   ├── predict/
-│   │   └── predict_consumer.py # Consumidor de Kafka y predictor
-│   └── train/
-│       └── train.py            # Script de entrenamiento del modelo
-├── models/                     # Modelos de ML entrenados y guardados
-├── notebooks/                  # Jupyter notebooks para EDA y desarrollo de modelos
-│   ├── 001_merge.ipynb         # Notebook para el proceso de unificación
-│   └── ...                     # Otros notebooks de limpieza y EDA por año
+│ ├── raw/
+│ │ ├── 2015.csv
+│ │ └── ... (otros archivos CSV de años)
+│ ├── processed/
+│ │ ├── 2015_cleaned.csv
+│ │ └── happiness_unified_dataset.csv
+│ ├── predictions_output.csv
+│ └── 001_mini_eda_predicciones.ipynb
+├── docker-compose.yml
+├── etl/
+│ ├── extract/
+│ │ └── extract.py
+│ ├── load/
+│ │ └── save_transformed_datasets.py
+│ │ └── save_unified_dataset.py
+│ ├── merge/
+│ │ └── merge.py
+│ └── transform/
+│ └── transform.py
+├── ml/
+│ ├── predict/
+│ │ └── predict_consumer.py
+│ └── train/
+│ └── train.py
+├── models/
+│ └── trained_happiness_model_pipeline.joblib
+├── notebooks/
+│ ├── 001_merge.ipynb
+│ └── ... (otros notebooks de EDA y limpieza)
 ├── streaming/
-│   └── producer/
-│       └── producer.py         # Lógica del productor de Kafka (usada por Airflow)
+│ └── producer/
+│ └── producer.py
 ├── .gitignore
-├── README.md                   # Este archivo
-└── requirements.txt            # Dependencias del proyecto Python
+├── README.md
+└── requirements.txt
 ```
 
 ## Flujo de Datos y Procesos
