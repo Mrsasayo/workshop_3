@@ -22,11 +22,11 @@ Este proyecto implementa un pipeline completo de ETL (Extracción, Transformaci�
 
 ## Visión General del Proyecto
 
-El proyecto toma datos crudos del score de felicidad mundial de los años 2015 a 2019. Estos datasets se limpian,
-transforman y unifican. Posteriormente, se entrena un modelo de Machine Learning (Gradient Boosting Regressor) 
-para predecir el score de felicidad. Una porción de los datos se envía a través de un topic de Kafka para simular 
-un flujo de datos para predicción en tiempo real. Un consumidor de Kafka lee estos datos, utiliza el modelo entrenado 
-para hacer predicciones y almacena los resultados en una base de datos PostgreSQL.
+El proyecto toma datos crudos del score de felicidad mundial de los años 2015 a 2019. Estos datasets se limpian,transforman 
+y unifican. Posteriormente, se entrena un modelo de Machine Learning (Gradient Boosting Regressor) para predecir 
+el score de felicidad. Una porción de los datos se envía a través de un topic de Kafka para simular un flujo 
+de datos para predicción en tiempo real. Un consumidor de Kafka lee estos datos, utiliza el modelo entrenado para 
+hacer predicciones y almacena los resultados en una base de datos PostgreSQL.
 
 ## Objetivos
 
@@ -42,7 +42,8 @@ para hacer predicciones y almacena los resultados en una base de datos PostgreSQ
 *   **Python 3.10+**
 *   **Pandas:** Para manipulación y análisis de datos.
 *   **NumPy:** Para operaciones numéricas.
-*   **Scikit-learn:** Para preprocesamiento de datos y modelado de Machine Learning (GradientBoostingRegressor, StandardScaler, OneHotEncoder, Pipeline, ColumnTransformer).
+*   **Scikit-learn:** Para preprocesamiento de datos y modelado de Machine Learning 
+(GradientBoostingRegressor, StandardScaler, OneHotEncoder, Pipeline, ColumnTransformer).
 *   **Joblib:** Para guardar y cargar modelos entrenados.
 *   **Apache Airflow (v2.10.0):** Para la orquestación del pipeline.
 *   **Apache Kafka:** Para el sistema de mensajería y streaming de datos.
@@ -87,7 +88,7 @@ Una visión general de la organización de los directorios y archivos clave:
     *   `├── README.md`: Documentación principal del proyecto.
     *   `└── requirements.txt`: Dependencias de Python del proyecto.
 ```
-
+```
 ## Flujo de Datos y Procesos
 
 ### Pipeline de Airflow (`happiness_etl_ml_pipeline`)
