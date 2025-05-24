@@ -1,0 +1,538 @@
+.
+├── airflow
+│   ├── airflow.cfg
+│   ├── airflow.db
+│   ├── airflow-webserver.pid
+│   ├── dags
+│   │   ├── dag.py
+│   │   ├── example_test_dag.py
+│   │   ├── __pycache__
+│   │   │   ├── dag.cpython-310.pyc
+│   │   │   ├── example_test_dag.cpython-310.pyc
+│   │   │   └── task.cpython-310.pyc
+│   │   └── task.py
+│   ├── logs
+│   │   ├── dag_id=happiness_etl_ml_pipeline
+│   │   │   ├── run_id=manual__2025-05-22T02:48:18.560233+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T03:28:32.976911+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T04:11:30.988830+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T05:11:47.894750+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T05:22:26.029351+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T06:29:26.250739+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T06:46:21.163297+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T06:52:03.052533+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T06:53:52.101956+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T07:26:12.954595+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T07:30:52.675254+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T07:36:54.763832+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T07:37:24.836286+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T07:41:08.547228+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T07:43:34.716882+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T07:44:53.079659+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T08:02:22.437948+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   ├── run_id=manual__2025-05-22T08:04:55.267008+00:00
+│   │   │   │   ├── task_id=1_extraccion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=2_transformacion
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_1_merge_split_datos
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=3_2_carga_individual_limpios
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_1_entrenamiento_modelo
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   ├── task_id=4_2_kafka_producer
+│   │   │   │   │   └── attempt=1.log
+│   │   │   │   └── task_id=4_3_carga_merge_completo
+│   │   │   │       └── attempt=1.log
+│   │   │   └── run_id=manual__2025-05-22T08:07:11.662235+00:00
+│   │   │       ├── task_id=1_extraccion
+│   │   │       │   └── attempt=1.log
+│   │   │       ├── task_id=2_transformacion
+│   │   │       │   └── attempt=1.log
+│   │   │       ├── task_id=3_1_merge_split_datos
+│   │   │       │   └── attempt=1.log
+│   │   │       ├── task_id=3_2_carga_individual_limpios
+│   │   │       │   └── attempt=1.log
+│   │   │       ├── task_id=4_1_entrenamiento_modelo
+│   │   │       │   └── attempt=1.log
+│   │   │       ├── task_id=4_2_kafka_producer
+│   │   │       │   └── attempt=1.log
+│   │   │       └── task_id=4_3_carga_merge_completo
+│   │   │           └── attempt=1.log
+│   │   ├── dag_processor_manager
+│   │   │   └── dag_processor_manager.log
+│   │   └── scheduler
+│   │       ├── 2025-05-22
+│   │       │   ├── dag.py.log
+│   │       │   ├── example_test_dag.py.log
+│   │       │   ├── native_dags
+│   │       │   │   └── example_dags
+│   │       │   │       ├── example_bash_decorator.py.log
+│   │       │   │       ├── example_bash_operator.py.log
+│   │       │   │       ├── example_branch_datetime_operator.py.log
+│   │       │   │       ├── example_branch_day_of_week_operator.py.log
+│   │       │   │       ├── example_branch_labels.py.log
+│   │       │   │       ├── example_branch_operator_decorator.py.log
+│   │       │   │       ├── example_branch_operator.py.log
+│   │       │   │       ├── example_branch_python_dop_operator_3.py.log
+│   │       │   │       ├── example_complex.py.log
+│   │       │   │       ├── example_dag_decorator.py.log
+│   │       │   │       ├── example_dataset_alias.py.log
+│   │       │   │       ├── example_dataset_alias_with_no_taskflow.py.log
+│   │       │   │       ├── example_datasets.py.log
+│   │       │   │       ├── example_display_name.py.log
+│   │       │   │       ├── example_dynamic_task_mapping.py.log
+│   │       │   │       ├── example_dynamic_task_mapping_with_no_taskflow_operators.py.log
+│   │       │   │       ├── example_external_task_marker_dag.py.log
+│   │       │   │       ├── example_inlet_event_extra.py.log
+│   │       │   │       ├── example_kubernetes_executor.py.log
+│   │       │   │       ├── example_latest_only.py.log
+│   │       │   │       ├── example_latest_only_with_trigger.py.log
+│   │       │   │       ├── example_local_kubernetes_executor.py.log
+│   │       │   │       ├── example_nested_branch_dag.py.log
+│   │       │   │       ├── example_outlet_event_extra.py.log
+│   │       │   │       ├── example_params_trigger_ui.py.log
+│   │       │   │       ├── example_params_ui_tutorial.py.log
+│   │       │   │       ├── example_passing_params_via_test_command.py.log
+│   │       │   │       ├── example_python_decorator.py.log
+│   │       │   │       ├── example_python_operator.py.log
+│   │       │   │       ├── example_sensor_decorator.py.log
+│   │       │   │       ├── example_sensors.py.log
+│   │       │   │       ├── example_setup_teardown.py.log
+│   │       │   │       ├── example_setup_teardown_taskflow.py.log
+│   │       │   │       ├── example_short_circuit_decorator.py.log
+│   │       │   │       ├── example_short_circuit_operator.py.log
+│   │       │   │       ├── example_skip_dag.py.log
+│   │       │   │       ├── example_sla_dag.py.log
+│   │       │   │       ├── example_subdag_operator.py.log
+│   │       │   │       ├── example_task_group_decorator.py.log
+│   │       │   │       ├── example_task_group.py.log
+│   │       │   │       ├── example_time_delta_sensor_async.py.log
+│   │       │   │       ├── example_trigger_controller_dag.py.log
+│   │       │   │       ├── example_trigger_target_dag.py.log
+│   │       │   │       ├── example_workday_timetable.py.log
+│   │       │   │       ├── example_xcomargs.py.log
+│   │       │   │       ├── example_xcom.py.log
+│   │       │   │       ├── plugins
+│   │       │   │       │   ├── decreasing_priority_weight_strategy.py.log
+│   │       │   │       │   ├── event_listener.py.log
+│   │       │   │       │   ├── listener_plugin.py.log
+│   │       │   │       │   └── workday.py.log
+│   │       │   │       ├── subdags
+│   │       │   │       │   └── subdag.py.log
+│   │       │   │       ├── tutorial_dag.py.log
+│   │       │   │       ├── tutorial_objectstorage.py.log
+│   │       │   │       ├── tutorial.py.log
+│   │       │   │       ├── tutorial_taskflow_api.py.log
+│   │       │   │       └── tutorial_taskflow_api_virtualenv.py.log
+│   │       │   └── task.py.log
+│   │       └── latest -> 2025-05-22
+│   ├── standalone_admin_password.txt
+│   └── webserver_config.py
+├── config
+│   ├── airflow_setup.txt
+│   └── .env
+├── data
+│   ├── 001_mini_eda_predicciones.ipynb
+│   ├── predictions_output.csv
+│   ├── processed
+│   │   ├── 2015_cleaned.csv
+│   │   ├── 2016_cleaned.csv
+│   │   ├── 2017_cleaned.csv
+│   │   ├── 2018_cleaned.csv
+│   │   ├── 2019_cleaned.csv
+│   │   └── happiness_unified_dataset.csv
+│   └── raw
+│       ├── 2015.csv
+│       ├── 2016.csv
+│       ├── 2017.csv
+│       ├── 2018.csv
+│       └── 2019.csv
+├── delete_pycache.sh
+├── docker-compose.yml
+├── etl
+│   ├── extract
+│   │   ├── extract.py
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   │       ├── extract.cpython-310.pyc
+│   │       └── __init__.cpython-310.pyc
+│   ├── __init__.py
+│   ├── load
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-310.pyc
+│   │   │   ├── save_transformed_datasets.cpython-310.pyc
+│   │   │   └── save_unified_dataset.cpython-310.pyc
+│   │   ├── save_transformed_datasets.py
+│   │   └── save_unified_dataset.py
+│   ├── merge
+│   │   ├── __init__.py
+│   │   ├── merge.py
+│   │   └── __pycache__
+│   │       ├── __init__.cpython-310.pyc
+│   │       └── merge.cpython-310.pyc
+│   ├── __pycache__
+│   │   └── __init__.cpython-310.pyc
+│   └── transform
+│       ├── __init__.py
+│       ├── __pycache__
+│       │   ├── __init__.cpython-310.pyc
+│       │   └── transform.cpython-310.pyc
+│       └── transform.py
+├── .git
+│   ├── branches
+│   ├── COMMIT_EDITMSG
+│   ├── config
+│   ├── description
+│   ├── FETCH_HEAD
+│   ├── HEAD
+│   ├── hooks
+│   │   ├── applypatch-msg.sample
+│   │   ├── commit-msg.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── pre-commit.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── pre-push.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── pre-receive.sample
+│   │   ├── push-to-checkout.sample
+│   │   └── update.sample
+│   ├── index
+│   ├── info
+│   │   ├── exclude
+│   │   └── refs
+│   ├── logs
+│   │   ├── HEAD
+│   │   └── refs
+│   │       ├── heads
+│   │       │   ├── develop
+│   │       │   └── main
+│   │       └── remotes
+│   │           └── origin
+│   │               ├── develop
+│   │               ├── HEAD
+│   │               └── main
+│   ├── objects
+│   │   ├── info
+│   │   │   ├── commit-graph
+│   │   │   └── packs
+│   │   └── pack
+│   │       ├── pack-e30692fd1540735155ac742495f9d1415d4e2f0d.idx
+│   │       └── pack-e30692fd1540735155ac742495f9d1415d4e2f0d.pack
+│   ├── ORIG_HEAD
+│   ├── packed-refs
+│   └── refs
+│       ├── heads
+│       ├── remotes
+│       │   └── origin
+│       │       └── HEAD
+│       └── tags
+├── .gitignore
+├── ml
+│   ├── __init__.py
+│   ├── predict
+│   │   ├── __init__.py
+│   │   └── predict_consumer.py
+│   ├── __pycache__
+│   │   └── __init__.cpython-310.pyc
+│   └── train
+│       ├── __init__.py
+│       ├── __pycache__
+│       │   ├── __init__.cpython-310.pyc
+│       │   └── train.cpython-310.pyc
+│       └── train.py
+├── models
+│   ├── GradientBoosting_S1_info.txt
+│   ├── GradientBoosting_S1_pipeline.joblib
+│   ├── GradientBoosting_S1_script_info.txt
+│   ├── GradientBoosting_S1_script.joblib
+│   └── trained_happiness_model_pipeline.joblib
+├── notebooks
+│   ├── 001_merge.ipynb
+│   ├── 001_merge.log
+│   ├── 2015
+│   │   ├── 001_2015_eda.ipynb
+│   │   ├── 001_2015_eda.log
+│   │   ├── 002_2015_clean.ipynb
+│   │   └── 002_2015_clean.log
+│   ├── 2016
+│   │   ├── 001_2016_eda.ipynb
+│   │   ├── 001_2016_eda.log
+│   │   ├── 002_2016_clean.ipynb
+│   │   └── 002_2016_clean.log
+│   ├── 2017
+│   │   ├── 001_2017_eda.ipynb
+│   │   ├── 001_2017_eda.log
+│   │   ├── 002_2017_clean.ipynb
+│   │   └── 002_2017_clean.log
+│   ├── 2018
+│   │   ├── 001_2018_eda.ipynb
+│   │   ├── 001_2018_eda.log
+│   │   ├── 002_2018_clean.ipynb
+│   │   └── 002_2018_clean.log
+│   ├── 2019
+│   │   ├── 001_2019_eda.ipynb
+│   │   ├── 001_2019_eda.log
+│   │   ├── 002_2019_clean.ipynb
+│   │   └── 002_2019_clean.log
+│   └── train
+│       ├── 001_pre_train.ipynb
+│       ├── 001_pre_train.log
+│       ├── 002_train_GradientBoosting_S1.ipynb
+│       └── 002_train_GradientBoosting_S1.log
+├── README.md
+├── requirements.txt
+├── salida.txt
+├── streaming
+│   └── producer
+│       ├── __init__.py
+│       ├── producer.py
+│       └── __pycache__
+│           ├── __init__.cpython-310.pyc
+│           └── producer.cpython-310.pyc
+└── tests
+
+213 directories, 322 files

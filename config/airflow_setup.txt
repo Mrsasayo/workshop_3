@@ -69,3 +69,20 @@ airflow standalone
 # Luego continuar con los pasos 5 y 6.
 
 # --- Fin de Pasos de Troubleshooting ---
+
+git gc --prune=now --aggressive
+# --prune=now: Elimina objetos sueltos más antiguos que "ahora" (es decir, todos los que son elegibles).
+# --aggressive: Optimiza el repositorio de forma más intensiva, lo cual puede tardar más pero podría resultar en un packfile más pequeño.
+
+
+el topic:
+nicolas@nznicolas:~/Escritorio/workshops_ETL/workshop_3$ docker exec -it kafka_broker_workshop3 kafka-console-consumer     --bootstrap-server localhost:9092     --topic happiness_data_to_predict     --from-beginning
+
+el consumer
+(venv) nicolas@nznicolas:~/Escritorio/workshops_ETL/workshop_3$ python3 ml/predict/predict_consumer.py
+
+docker
+(venv) nicolas@nznicolas:~/Escritorio/workshops_ETL/workshop_3$ docker compose up -d
+
+airflow
+(venv) nicolas@nznicolas:~/Escritorio/workshops_ETL/workshop_3$ airflow standalone

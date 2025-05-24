@@ -6,7 +6,7 @@ import joblib
 import os
 import logging
 
-from sklearn.model_selection import train_test_split # Solo si se necesita un split interno para validación, no para el entrenamiento final
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
