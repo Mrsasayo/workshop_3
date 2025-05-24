@@ -53,53 +53,35 @@ El proyecto toma datos crudos del score de felicidad mundial de los años 2015 a
 ## Estructura del Proyecto
 
 ```
-.
-├── airflow/
-│ ├── dags/
-│ │ ├── dag.py
-│ │ └── task.py
-│ ├── airflow.cfg
-│ ├── airflow.db
-│ └── logs/
-├── config/
-│ ├── .env
-│ └── airflow_setup.txt
-├── data/
-│ ├── raw/
-│ │ ├── 2015.csv
-│ │ └── ... (otros archivos CSV de años)
-│ ├── processed/
-│ │ ├── 2015_cleaned.csv
-│ │ └── happiness_unified_dataset.csv
-│ ├── predictions_output.csv
-│ └── 001_mini_eda_predicciones.ipynb
-├── docker-compose.yml
-├── etl/
-│ ├── extract/
-│ │ └── extract.py
-│ ├── load/
-│ │ └── save_transformed_datasets.py
-│ │ └── save_unified_dataset.py
-│ ├── merge/
-│ │ └── merge.py
-│ └── transform/
-│ └── transform.py
-├── ml/
-│ ├── predict/
-│ │ └── predict_consumer.py
-│ └── train/
-│ └── train.py
-├── models/
-│ └── trained_happiness_model_pipeline.joblib
-├── notebooks/
-│ ├── 001_merge.ipynb
-│ └── ... (otros notebooks de EDA y limpieza)
-├── streaming/
-│ └── producer/
-│ └── producer.py
-├── .gitignore
-├── README.md
-└── requirements.txt
+Una visión general de la organización de los directorios y archivos clave:
+
+*   `.`
+    *   `├── airflow/`: Contiene la configuración y los DAGs de Apache Airflow.
+        *   `└── dags/`: Donde residen los scripts de definición de DAGs (`dag.py`, `task.py`).
+    *   `├── config/`: Archivos de configuración.
+        *   `├── .env`: Variables de entorno (credenciales, etc.).
+        *   `└── airflow_setup.txt`: Guía de instalación de Airflow.
+    *   `├── data/`: Todos los datos del proyecto.
+        *   `├── raw/`: Datasets originales por año.
+        *   `├── processed/`: Datasets limpios y el dataset unificado.
+        *   `├── predictions_output.csv`: Salida de las predicciones.
+        *   `└── 001_mini_eda_predicciones.ipynb`: Notebook para el análisis de resultados.
+    *   `├── docker-compose.yml`: Define los servicios de Kafka y Zookeeper.
+    *   `├── etl/`: Módulos para el proceso de Extracción, Transformación y Carga.
+        *   `├── extract/extract.py`
+        *   `├── transform/transform.py`
+        *   `├── merge/merge.py`
+        *   `└── load/`
+    *   `├── ml/`: Módulos para Machine Learning.
+        *   `├── train/train.py`: Script de entrenamiento del modelo.
+        *   `└── predict/predict_consumer.py`: Script del consumidor de Kafka para predicciones.
+    *   `├── models/`: Almacena los modelos entrenados (ej. `trained_happiness_model_pipeline.joblib`).
+    *   `├── notebooks/`: Jupyter Notebooks para análisis exploratorio y desarrollo.
+    *   `├── streaming/`: Módulos relacionados con Kafka.
+        *   `└── producer/producer.py`: Lógica del productor de Kafka.
+    *   `├── .gitignore`: Especifica archivos y directorios ignorados por Git.
+    *   `├── README.md`: Documentación principal del proyecto.
+    *   `└── requirements.txt`: Dependencias de Python del proyecto.
 ```
 
 ## Flujo de Datos y Procesos
