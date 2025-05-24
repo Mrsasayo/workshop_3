@@ -4,10 +4,10 @@
 Este proyecto implementa un pipeline completo de ETL (Extracción, Transformación, Carga) y Machine Learning para analizar y predecir el score de felicidad mundial utilizando datasets de varios años. El pipeline está orquestado con Apache Airflow y utiliza Kafka para el streaming de datos en tiempo real para predicciones, con los resultados almacenados en PostgreSQL.
 
 ## Tabla de Contenidos
-1.  [Visión General del Proyecto](#visión-general-del-proyecto)
-2.  [Objetivos](#objetivos)
-3.  [Tecnologías Utilizadas](#tecnologías-utilizadas)
-4.  [Estructura del Proyecto](#estructura-del-proyecto)
+1.  [Visión General del Proyecto]
+2.  [Objetivos]
+3.  [Tecnologías Utilizadas]
+4.  [Estructura del Proyecto]
 5.  [Flujo de Datos y Procesos](#flujo-de-datos-y-procesos)
     *   [Pipeline de Airflow](#pipeline-de-airflow)
     *   [Consumidor de Kafka y Almacenamiento de Predicciones](#consumidor-de-kafka-y-almacenamiento-de-predicciones)
