@@ -12,7 +12,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import GradientBoostingRegressor
 
-# Configurar logger
 logger = logging.getLogger(__name__)
 if not logger.hasHandlers():
     handler = logging.StreamHandler()
@@ -21,7 +20,6 @@ if not logger.hasHandlers():
     logger.addHandler(handler)
     logger.setLevel(logging.INFO)
 
-# Constante para reproducibilidad si algún paso lo requiere
 GLOBAL_RANDOM_STATE_MODEL_TRAIN = 42
 
 def train_and_save_model(df_train, models_output_path, model_filename="trained_happiness_model_pipeline.joblib"):
@@ -43,23 +41,18 @@ def train_and_save_model(df_train, models_output_path, model_filename="trained_h
         return None
 
     try:
-        # 1. Definir Features (X_train_model) y Target (y_train_model)
         target_column = 'happiness_score'
         if target_column not in df_train.columns:
             logger.error(f"Columna target '{target_column}' no encontrada en df_train.")
             return None
         
         y_train_model = df_train[target_column]
-        # Excluimos 'country' y 'happiness_rank' si aún estuvieran, y el target.
-        # Las columnas ya deberían estar estandarizadas según el paso de transformación.
         features_to_use = [col for col in df_train.columns if col not in [target_column, 'country', 'happiness_rank']]
         X_train_model = df_train[features_to_use]
         
         logger.info(f"Features para el entrenamiento: {X_train_model.columns.tolist()}")
 
-        # 2. Definir el Preprocesador para Escenario S1 (Region OHE, Year Numérica Escalada)
-        #    Las columnas ya tienen los nombres estándar aquí.
-        numeric_features_s1 = X_train_model.select_dtypes(include=[np.number]).columns.tolist() # Incluye 'year'
+        numeric_features_s1 = X_train_model.select_dtypes(include=[np.number]).columns.tolist()
         categorical_features_s1 = ['region'] if 'region' in X_train_model.columns else []
 
         numeric_transformer = Pipeline(steps=[('scaler', StandardScaler())])
@@ -79,12 +72,10 @@ def train_and_save_model(df_train, models_output_path, model_filename="trained_h
             
         preprocessor_s1_final = ColumnTransformer(
             transformers=transformers_list,
-            remainder='drop' # Asegura que solo se usen las features especificadas
+            remainder='drop' 
         )
         logger.info("Preprocesador S1 definido para el pipeline de entrenamiento.")
 
-        # 3. Definir el GradientBoostingRegressor con Hiperparámetros Óptimos
-        #    (Estos son los que identificaste como los mejores para GradientBoosting_S1)
         best_params_gb_s1 = {
             'learning_rate': 0.05,
             'max_depth': 5,
@@ -95,19 +86,16 @@ def train_and_save_model(df_train, models_output_path, model_filename="trained_h
         gbr_model_final = GradientBoostingRegressor(**best_params_gb_s1)
         logger.info(f"Modelo GradientBoostingRegressor definido con parámetros: {best_params_gb_s1}")
 
-        # 4. Crear el Pipeline Completo
         final_pipeline = Pipeline(steps=[
             ('preprocessor', preprocessor_s1_final),
             ('regressor', gbr_model_final)
         ])
         logger.info("Pipeline de preprocesamiento y modelo creado.")
 
-        # 5. Entrenar el Pipeline
         logger.info("Iniciando entrenamiento del pipeline final...")
         final_pipeline.fit(X_train_model, y_train_model)
         logger.info("Pipeline final entrenado exitosamente.")
 
-        # 6. Guardar el Pipeline Entrenado
         os.makedirs(models_output_path, exist_ok=True)
         model_filepath = os.path.join(models_output_path, model_filename)
         joblib.dump(final_pipeline, model_filepath)
@@ -119,11 +107,9 @@ def train_and_save_model(df_train, models_output_path, model_filename="trained_h
         logger.error(f"Error durante el entrenamiento o guardado del modelo: {e}", exc_info=True)
         return None
 
-# --- Bloque para pruebas si se ejecuta el script directamente ---
 if __name__ == '__main__':
     logger.info("Ejecutando train.py como script independiente para pruebas.")
     
-    # Crear un DataFrame de entrenamiento dummy (debería tener las columnas estandarizadas)
     data_train_dummy = {
         'year': [2015, 2016, 2017, 2018, 2019] * 20, # 100 filas
         'region': ['Region A', 'Region B'] * 50,
@@ -148,10 +134,6 @@ if __name__ == '__main__':
             # Intentar cargar para verificar
             loaded_model = joblib.load(saved_model_path)
             logger.info(f"Modelo de prueba cargado exitosamente: {type(loaded_model)}")
-            # podrías hacer una predicción dummy
-            # sample_data = df_train_for_test.drop(columns=['happiness_score', 'country', 'happiness_rank']).sample(1)
-            # prediction = loaded_model.predict(sample_data)
-            # logger.info(f"Predicción de prueba con modelo cargado: {prediction}")
         else:
             logger.error("La prueba de entrenamiento falló, no se guardó el modelo.")
             

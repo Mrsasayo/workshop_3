@@ -4,7 +4,6 @@ import pandas as pd
 import os
 import logging
 
-# Configurar logger
 logger = logging.getLogger(__name__)
 if not logger.hasHandlers():
     handler = logging.StreamHandler()
@@ -25,7 +24,6 @@ def save_single_cleaned_df(df, year, base_output_path):
     output_filepath = os.path.join(base_output_path, file_name)
     
     try:
-        # Asegurarse de que el directorio de salida exista
         os.makedirs(base_output_path, exist_ok=True)
         
         df.to_csv(output_filepath, index=False)
@@ -33,9 +31,6 @@ def save_single_cleaned_df(df, year, base_output_path):
         return f"DataFrame para {year} guardado en {output_filepath}"
     except Exception as e:
         logger.error(f"Error al guardar el DataFrame para el año {year} en '{output_filepath}': {e}")
-        # Podrías querer re-lanzar la excepción si el guardado es crítico para el pipeline
-        # o simplemente loguear y retornar un mensaje de error.
-        # Para una tarea de "carga para verificación", un log de error podría ser suficiente.
         return f"Error guardando DataFrame para {year}: {e}"
 
 
@@ -76,11 +71,9 @@ def save_transformed_datasets(dataframes_cleaned_tuple, processed_data_path):
     return "Resultados del guardado individual: " + "; ".join(results)
 
 
-# --- Bloque para pruebas si se ejecuta el script directamente ---
 if __name__ == '__main__':
     logger.info("Ejecutando save_transformed_datasets.py como script independiente para pruebas.")
     
-    # Crear DataFrames dummy para probar
     dummy_df_2015 = pd.DataFrame({'year': [2015], 'country': ['Testland15'], 'happiness_score': [7.0]})
     dummy_df_2016 = pd.DataFrame({'year': [2016], 'country': ['Testland16'], 'happiness_score': [7.1]})
     dummy_df_2017 = pd.DataFrame({'year': [2017], 'country': ['Testland17'], 'happiness_score': [7.2]})
@@ -89,12 +82,11 @@ if __name__ == '__main__':
     
     dfs_tuple_test = (dummy_df_2015, dummy_df_2016, dummy_df_2017, dummy_df_2018, dummy_df_2019)
     
-    test_output_path = "/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/processed_test/" # Usar un directorio de prueba
+    test_output_path = "/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/processed_test/"
     
     try:
         status_message = save_transformed_datasets(dfs_tuple_test, test_output_path)
         logger.info(f"Prueba de guardado completada. Mensaje: {status_message}")
-        # Verificar que los archivos se hayan creado en test_output_path
         for year_test in [2015, 2016, 2017, 2018, 2019]:
             expected_file = os.path.join(test_output_path, f"{year_test}_cleaned.csv")
             if os.path.exists(expected_file):

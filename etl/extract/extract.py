@@ -4,12 +4,8 @@ import pandas as pd
 import os
 import logging
 
-# Configurar un logger para este módulo si deseas logs específicos del script,
-# aunque Airflow también captura los prints y los logs de la tarea.
-# Si este script se importa, el logging configurado en task.py o dag.py podría ya estar activo.
-# Para evitar conflictos o duplicados si este script se corre solo vs importado:
-logger = logging.getLogger(__name__) # Usar el nombre del módulo
-if not logger.hasHandlers(): # Añadir handler solo si no tiene (evita duplicados si se importa en Airflow)
+logger = logging.getLogger(__name__)
+if not logger.hasHandlers():
     handler = logging.StreamHandler()
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
@@ -29,8 +25,6 @@ def load_single_raw_csv(file_path, year_for_log):
         return df
     except FileNotFoundError:
         logger.error(f"Error Crítico: El archivo crudo {file_path} (año {year_for_log}) no fue encontrado.")
-        # Podrías decidir lanzar la excepción para que Airflow marque la tarea como fallida
-        # o retornar None y manejarlo en la tarea de Airflow. Por robustez, lanzar es mejor.
         raise
     except pd.errors.EmptyDataError:
         logger.error(f"Error Crítico: El archivo crudo {file_path} (año {year_for_log}) está vacío.")
@@ -56,17 +50,13 @@ def extract_all_raw_data(raw_data_path_base="/home/nicolas/Escritorio/workshops_
     for year in years:
         file_name = f"{year}.csv"
         file_path = os.path.join(raw_data_path_base, file_name)
-        # Para el dataset 2018, sabemos que tiene 'N/A' que deben ser NaN.
-        # Para el dataset 2017, los nombres de columna tienen puntos y comillas.
-        # pd.read_csv maneja bien las comillas en los nombres de columna.
-        # El manejo de 'N/A' se hace mejor durante la carga si se sabe.
         if year == 2018:
             logger.info(f"Aplicando manejo especial de 'N/A' para {file_name}")
             try:
                 df = pd.read_csv(file_path, na_values=['N/A'])
                 logger.info(f"Archivo {file_name} ({year}) cargado con manejo de N/A. Filas: {df.shape[0]}, Columnas: {df.shape[1]}")
                 dataframes_raw[year] = df
-            except Exception as e: # Re-lanzar la excepción para que sea capturada por la tarea de Airflow
+            except Exception as e:
                 logger.error(f"Error cargando {file_name} con manejo de N/A: {e}")
                 raise
         else:
@@ -82,15 +72,12 @@ def extract_all_raw_data(raw_data_path_base="/home/nicolas/Escritorio/workshops_
             dataframes_raw[2019]
         )
     else:
-        # Esto no debería ocurrir si load_single_raw_csv lanza excepciones en caso de error.
         logger.error("No todos los datasets crudos pudieron ser cargados.")
         raise RuntimeError("Fallo en la carga de uno o más datasets crudos.")
 
-# --- Bloque para pruebas si se ejecuta el script directamente ---
 if __name__ == '__main__':
     logger.info("Ejecutando extract.py como script independiente para pruebas.")
     
-    # Definir una ruta base para las pruebas (podría ser la misma)
     test_raw_data_path = "/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/raw/"
     
     try:
@@ -103,12 +90,11 @@ if __name__ == '__main__':
         if df_2018 is not None: logger.info(f"df_2018: {df_2018.shape}, Columnas: {df_2018.columns.tolist()}")
         if df_2019 is not None: logger.info(f"df_2019: {df_2019.shape}, Columnas: {df_2019.columns.tolist()}")
         
-        # Mostrar head de uno para verificar
         if df_2018 is not None:
             print("\nHead de df_2018 (prueba):")
             print(df_2018.head())
             print("\nInfo de df_2018 (prueba):")
-            df_2018.info() # Para verificar el manejo de N/A
+            df_2018.info()
             
     except Exception as e:
         logger.error(f"Error durante la prueba del script de extracción: {e}")

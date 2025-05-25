@@ -13,7 +13,6 @@ import time
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
-# --- Configuración de Logging ---
 logger = logging.getLogger("kafka_consumer_predictor")
 logger.setLevel(logging.INFO)
 if not logger.hasHandlers():
@@ -22,7 +21,6 @@ if not logger.hasHandlers():
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
-# --- Cargar Variables de Entorno ---
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_root_dir = os.path.dirname(os.path.dirname(script_dir))
 env_path = os.path.join(project_root_dir, 'config', '.env')
@@ -32,14 +30,13 @@ if os.path.exists(env_path):
 else:
     logger.warning(f"Archivo .env no encontrado en {env_path}.")
 
-# --- Configuración Global ---
 KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:29092').split(',')
 KAFKA_TOPIC_NAME = os.getenv('KAFKA_PREDICT_TOPIC', 'happiness_data_to_predict')
-KAFKA_CONSUMER_GROUP_ID = os.getenv('KAFKA_CONSUMER_GROUP', 'happiness_predictor_group_main') # Cambiado para resetear offset si es necesario
+KAFKA_CONSUMER_GROUP_ID = os.getenv('KAFKA_CONSUMER_GROUP', 'happiness_predictor_group_main') 
 MODEL_FILENAME = os.getenv('MODEL_FILENAME', 'trained_happiness_model_pipeline.joblib')
 MODEL_PATH = os.path.join(project_root_dir, 'models', MODEL_FILENAME)
-CSV_OUTPUT_PATH = os.path.join(project_root_dir, 'data', 'predictions_output.csv') # Ruta para el CSV de salida
-CONSUMER_RUN_DURATION_MINUTES = 5 # Cuánto tiempo el consumidor estará activo
+CSV_OUTPUT_PATH = os.path.join(project_root_dir, 'data', 'predictions_output.csv')
+CONSUMER_RUN_DURATION_MINUTES = 5
 
 PG_HOST = os.getenv('POSTGRES_HOST', 'localhost')
 PG_PORT = os.getenv('POSTGRES_PORT', '5432')
@@ -48,13 +45,11 @@ PG_USER = os.getenv('POSTGRES_USER', 'postgres')
 PG_PASSWORD = os.getenv('POSTGRES_PASSWORD', 'postgres')
 PG_TABLE_NAME = os.getenv('PG_PREDICTIONS_TABLE', 'happiness_predictions')
 
-# Columnas esperadas para el DataFrame de predicción y para el CSV/DB
-# Deben coincidir con las columnas de df_predict_stream más la columna de predicción
 EXPECTED_DF_COLUMNS = [
-    'year', 'region', 'country', 'happiness_rank', 'happiness_score', # Score original si se envía
+    'year', 'region', 'country', 'happiness_rank', 'happiness_score', 
     'social_support', 'health_life_expectancy', 'generosity',
     'freedom_to_make_life_choices', 'economy_gdp_per_capita',
-    'perceptions_of_corruption', 'predicted_happiness_score' # Añadida
+    'perceptions_of_corruption', 'predicted_happiness_score' 
 ]
 
 
@@ -75,12 +70,11 @@ def create_kafka_consumer(topic, bootstrap_servers, group_id):
         consumer = KafkaConsumer(
             topic,
             bootstrap_servers=bootstrap_servers,
-            auto_offset_reset='earliest', # Para asegurar que procese desde el inicio si es un nuevo grupo
+            auto_offset_reset='earliest', 
             enable_auto_commit=True,
             group_id=group_id,
             value_deserializer=lambda v: json.loads(v.decode('utf-8')),
-            consumer_timeout_ms=1000 # Timeout de 1 segundo para que el bucle no bloquee indefinidamente
-                                     # y podamos verificar el tiempo de ejecución.
+            consumer_timeout_ms=1000 
         )
         logger.info(f"Consumidor conectado al topic '{topic}' en Kafka: {bootstrap_servers}")
         return consumer
@@ -132,7 +126,6 @@ def create_predictions_table_if_not_exists(conn):
 def save_prediction_to_postgres(conn, prediction_data):
     if conn is None: return False
     
-    # Columnas en el orden de la tabla (excluyendo 'id' y 'prediction_timestamp' que son auto)
     cols_for_insert_order = [
         'year', 'country', 'region', 'happiness_rank', 'happiness_score',
         'social_support', 'health_life_expectancy', 'generosity',
@@ -178,32 +171,24 @@ def main():
         if pg_conn: pg_conn.close()
         return
 
-    all_predictions_for_csv = [] # Lista para acumular datos para el CSV
+    all_predictions_for_csv = [] 
     messages_processed_total = 0
-    last_message_time = time.time() # Para el rate limiting
-
+    last_message_time = time.time() 
     try:
         while datetime.now() < end_time:
             logger.debug("Sondeando mensajes...")
-            for message in consumer: # El timeout_ms hará que este bucle no bloquee indefinidamente
-                if message is None: # Timeout alcanzado
-                    if datetime.now() >= end_time: break # Salir si el tiempo total se ha cumplido
+            for message in consumer:
+                if message is None:
+                    if datetime.now() >= end_time: break
                     continue
 
                 messages_processed_total += 1
                 data_to_predict_dict = message.value 
                 logger.info(f"Mensaje {messages_processed_total} (offset={message.offset}) recibido: {data_to_predict_dict}")
 
-                # --- INICIO DE LA LÓGICA DE VERIFICACIÓN DE DUPLICADOS ---
-                # Columnas para identificar unívocamente un registro de entrada (excluyendo el target y la predicción)
-                # Asegúrate de que estas sean las features reales que usa tu modelo para predecir.
-                # 'happiness_rank' y 'happiness_score' original podrían o no ser parte de esto,
-                # dependiendo de si las usas como features o solo para contexto.
-                # Por tu ejemplo, parece que las incluyes.
                 excluded_columns = ['predicted_happiness_score','happiness_rank','happiness_score']
                 identifier_columns = [col for col in EXPECTED_DF_COLUMNS if col not in excluded_columns]
                 
-                # Construir las condiciones para la consulta SQL
                 conditions = []
                 values_for_conditions = []
                 valid_record_for_check = True
@@ -212,7 +197,6 @@ def main():
                         conditions.append(f"{col} = %s")
                         values_for_conditions.append(data_to_predict_dict[col])
                     else:
-                        # Si alguna columna clave es None, podrías decidir no hacer el check o manejarlo diferente
                         logger.warning(f"Columna identificadora '{col}' es None o no está en el mensaje. Saltando chequeo de duplicados para este mensaje.")
                         valid_record_for_check = False
                         break 
@@ -220,32 +204,21 @@ def main():
                 if pg_conn and valid_record_for_check:
                     try:
                         with pg_conn.cursor() as cur:
-                            # Construir la consulta para verificar si ya existe una predicción para estas features
-                            # Aquí asumimos que si existe alguna fila con estas features, ya fue predicha.
-                            # Podrías también verificar si 'predicted_happiness_score' NO ES NULL.
                             check_query = f"SELECT 1 FROM {PG_TABLE_NAME} WHERE {' AND '.join(conditions)} LIMIT 1;"
                             cur.execute(check_query, tuple(values_for_conditions))
                             exists = cur.fetchone()
                             
                             if exists:
                                 logger.info(f"Predicción para { {k: data_to_predict_dict.get(k) for k in ['year', 'country']} } ya existe en la base de datos. Saltando.")
-                                # Opcional: podrías querer confirmar el offset de Kafka aquí si no usas auto-commit
-                                # y si consideras este mensaje como "procesado".
-                                continue # Pasa al siguiente mensaje de Kafka
+                                continue
                     except psycopg2.Error as e_check:
                         logger.error(f"Error al verificar duplicados en PostgreSQL: {e_check}")
-                        # Decide cómo manejar esto: ¿continuar y predecir de todas formas, o saltar?
-                        # Por seguridad, podrías continuar y predecir si la verificación falla.
                     except Exception as e_general_check:
                         logger.error(f"Error general durante la verificación de duplicados: {e_general_check}")
 
-                # --- FIN DE LA LÓGICA DE VERIFICACIÓN DE DUPLICADOS ---
 
                 try:
                     df_to_predict = pd.DataFrame([data_to_predict_dict])
-                    # Asegurar que el df tenga las columnas que el preprocesador espera.
-                    # Si df_predict_stream tenía columnas extra, el preprocesador (con remainder='drop') las ignorará.
-                    # Si faltan columnas, el preprocesador fallará.
                     
                     prediction = model.predict(df_to_predict)
                     predicted_score = float(prediction[0]) 
@@ -253,30 +226,27 @@ def main():
                     prediction_record = data_to_predict_dict.copy()
                     prediction_record['predicted_happiness_score'] = predicted_score
                     
-                    # Guardar en PostgreSQL
                     save_prediction_to_postgres(pg_conn, prediction_record)
                     
-                    # Añadir a la lista para el CSV (solo las columnas esperadas)
                     record_for_csv = {col: prediction_record.get(col) for col in EXPECTED_DF_COLUMNS}
                     all_predictions_for_csv.append(record_for_csv)
                     
-                    # Limitar a ~2 mensajes por segundo (0.5 segundos por mensaje)
                     current_time = time.time()
                     time_to_wait = 0.5 - (current_time - last_message_time)
                     if time_to_wait > 0:
                         time.sleep(time_to_wait)
-                    last_message_time = time.time() # Actualizar para el siguiente
+                    last_message_time = time.time() 
 
                 except Exception as e_pred:
                     logger.error(f"Error al procesar mensaje o hacer predicción: {e_pred}", exc_info=True)
                 
                 if datetime.now() >= end_time:
                     logger.info("Tiempo de ejecución del consumidor completado.")
-                    break # Salir del bucle for
+                    break
             
-            if datetime.now() >= end_time and messages_processed_total > 0: # Si el tiempo se cumplió y hubo mensajes
-                 break # Salir del bucle while
-            elif datetime.now() >= end_time and messages_processed_total == 0: # Si el tiempo se cumplió y no hubo mensajes
+            if datetime.now() >= end_time and messages_processed_total > 0: 
+                 break 
+            elif datetime.now() >= end_time and messages_processed_total == 0:
                  logger.info("Tiempo de ejecución completado, no se procesaron mensajes en este ciclo.")
                  break
 
@@ -295,7 +265,6 @@ def main():
         if all_predictions_for_csv:
             try:
                 predictions_df = pd.DataFrame(all_predictions_for_csv)
-                # Asegurar el orden de columnas para el CSV
                 predictions_df = predictions_df[EXPECTED_DF_COLUMNS]
                 predictions_df.to_csv(CSV_OUTPUT_PATH, index=False)
                 logger.info(f"Todas las predicciones procesadas ({len(all_predictions_for_csv)}) guardadas en: {CSV_OUTPUT_PATH}")
@@ -303,7 +272,6 @@ def main():
                 logger.error(f"Error al guardar predicciones en CSV: {e_csv}")
         else:
             logger.info("No se procesaron predicciones para guardar en CSV.")
-            # Crear un archivo CSV vacío con encabezados si no hay predicciones
             try:
                 pd.DataFrame(columns=EXPECTED_DF_COLUMNS).to_csv(CSV_OUTPUT_PATH, index=False)
                 logger.info(f"Archivo CSV vacío con encabezados creado en: {CSV_OUTPUT_PATH}")

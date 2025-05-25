@@ -1,13 +1,12 @@
 # /home/nicolas/Escritorio/workshops_ETL/workshop_3/etl/merge/merge.py
 
 import pandas as pd
-from sklearn.model_selection import train_test_split # Para el split
+from sklearn.model_selection import train_test_split
 import logging
 import os
 import sys
 
 
-# Configurar logger
 logger = logging.getLogger(__name__)
 if not logger.hasHandlers():
     handler = logging.StreamHandler()
@@ -16,7 +15,6 @@ if not logger.hasHandlers():
     logger.addHandler(handler)
     logger.setLevel(logging.INFO)
 
-# Constante para la reproducibilidad del split
 GLOBAL_RANDOM_STATE_FOR_SPLIT = 42 
 DESIRED_FINAL_COLUMN_ORDER = [
     'year', 'region', 'country', 'happiness_rank', 'happiness_score',
@@ -52,7 +50,6 @@ def merge_and_split_dataframes(df_2015_cleaned, df_2016_cleaned, df_2017_cleaned
         logger.error("No se proporcionaron DataFrames limpios para concatenar.")
         raise ValueError("No hay DataFrames para unificar.")
 
-    # 1. Concatenar los DataFrames
     try:
         df_unified_full = pd.concat(list_of_cleaned_dfs, ignore_index=True)
         logger.info(f"DataFrames concatenados. DataFrame unificado tiene {df_unified_full.shape[0]} filas y {df_unified_full.shape[1]} columnas.")
@@ -60,39 +57,21 @@ def merge_and_split_dataframes(df_2015_cleaned, df_2016_cleaned, df_2017_cleaned
         logger.error(f"Error durante la concatenación de DataFrames: {e}")
         raise
 
-    # 2. Verificar consistencia de columnas (opcional aquí, ya se debería haber hecho)
-    #    Pero es bueno asegurarse de que todas las columnas esperadas estén.
-    expected_cols_after_clean = set(DESIRED_FINAL_COLUMN_ORDER) # Definido en transform.py o aquí
+    expected_cols_after_clean = set(DESIRED_FINAL_COLUMN_ORDER)
     actual_cols_unified = set(df_unified_full.columns)
-    if not expected_cols_after_clean.issubset(actual_cols_unified): # Chequea si todas las esperadas están
+    if not expected_cols_after_clean.issubset(actual_cols_unified):
         missing = expected_cols_after_clean - actual_cols_unified
         logger.warning(f"Columnas esperadas faltantes en el DF unificado: {missing}")
-        # Podrías lanzar un error si faltan columnas críticas
         
-    # 3. Dividir el DataFrame unificado
-    #    Asegurarse de que la columna target exista para la estratificación si se usa.
-    #    Para un split simple, solo necesitamos X e y.
     if 'happiness_score' not in df_unified_full.columns:
         logger.error("La columna 'happiness_score' (target) no se encuentra en el DataFrame unificado para el split.")
         raise ValueError("Columna target faltante para el split.")
 
-    # Separar features y target para el split (si quieres estratificar por el target)
-    # X_unified = df_unified_full.drop(columns=['happiness_score']) # O las features que usarás
-    # y_unified = df_unified_full['happiness_score']
-    
-    # train_test_split divide en train y test (que usaremos como predict_stream)
-    # Si el dataset es pequeño, estratificar puede no ser crucial, pero si el target tiene
-    # una distribución desigual, puede ser útil. Para regresión, la estratificación es más compleja.
-    # Por ahora, un split aleatorio simple.
-    
     try:
         df_train, df_predict_stream = train_test_split(
             df_unified_full,
             test_size=test_size,
             random_state=random_state
-            # Si quisieras estratificar por 'year' o 'region' (siempre que no haya muchos NaNs):
-            # stratify=df_unified_full['year'] if df_unified_full['year'].nunique() > 1 else None 
-            # (estratificar por una variable con pocos valores únicos por muestra puede dar error)
         )
         logger.info(f"DataFrame unificado dividido: df_train ({df_train.shape[0]} filas), df_predict_stream ({df_predict_stream.shape[0]} filas).")
     except Exception as e:
@@ -102,12 +81,9 @@ def merge_and_split_dataframes(df_2015_cleaned, df_2016_cleaned, df_2017_cleaned
     return df_train, df_predict_stream, df_unified_full
 
 
-# --- Bloque para pruebas si se ejecuta el script directamente ---
 if __name__ == '__main__':
     logger.info("Ejecutando merge.py como script independiente para pruebas.")
     
-    # Para probar, necesitaríamos cargar los DFs limpios (o crear dummies)
-    # Asumimos que los archivos _cleaned.csv existen en data/processed/
     base_path_processed_test = "/home/nicolas/Escritorio/workshops_ETL/workshop_3/data/processed/"
     
     dfs_test_cleaned = []
@@ -115,7 +91,6 @@ if __name__ == '__main__':
     for year_test in [2015, 2016, 2017, 2018, 2019]:
         try:
             path_test = os.path.join(base_path_processed_test, f"{year_test}_cleaned.csv")
-            # Simular que DESIRED_FINAL_COLUMN_ORDER está disponible o definirlo aquí para la prueba
             DESIRED_FINAL_COLUMN_ORDER = [
                 'year', 'region', 'country', 'happiness_rank', 'happiness_score',
                 'social_support', 'health_life_expectancy', 'generosity',
@@ -123,7 +98,6 @@ if __name__ == '__main__':
                 'perceptions_of_corruption'
             ]
             df_temp = pd.read_csv(path_test)
-            # Asegurar que solo tenga las columnas deseadas para simular la salida de transform
             df_temp = df_temp[[col for col in DESIRED_FINAL_COLUMN_ORDER if col in df_temp.columns]]
             dfs_test_cleaned.append(df_temp)
         except FileNotFoundError:
